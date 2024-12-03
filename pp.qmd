@@ -1,0 +1,126 @@
+---
+title: "Poisson Processes"
+subtitle: "Counting in continuous time"
+author: "Joshua J Bon"
+bibliography: refs.bib
+format:
+  revealjs:
+    html-math-method: mathjax 
+    theme: default
+    df-print: paged
+    incremental: true 
+    css: style.css
+    chalkboard: true
+editor: visual
+---
+
+```{r setup, load_refs, include=FALSE, cache=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(scales)
+library(RColorBrewer)
+library(purrr)
+library(distributional)
+library(ggdist)
+
+```
+
+## Lecture overview
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+- Motivation
+
+- Tools of the day
+  
+- History
+  
+- Poisson Process 
+  - Definition
+  - Properties
+  - Activity
+
+- Recap and more
+
+:::
+
+::: {.column width="40%"}
+
+![Siméon Denis Poisson](imgs/poisson.jpg){fig-align="right"}
+
+:::
+
+::::
+
+# Motivation
+
+## Lines, damned lines, and queuing theory
+
+
+
+# Tools of the day
+
+## The Poisson Distribution
+
+::: {.callout-note}
+## Poisson random variable
+The random variable $X \in \mathbb{N}_0$ is Poisson distributed with rate $\lambda$ or
+
+$X \sim \mathcal{P}(\lambda)$ when
+$$
+\mathbb{P}(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}, \quad \forall k \in \mathbb{N}_0
+$$
+:::
+
+
+# History
+
+## Siméon Denis Poisson
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+::: {.fragment .fade-out}
+«La vie n’est bonne qu’à deux choses: à faire des mathématiques et à les professer.»
+:::
+
+::: {.fragment}
+"Life is only good for two things: doing mathematics and teaching it"
+:::
+
+## Coffee and phone calls
+
+## Death by horse kick
+
+## Death by horse kick
+
+
+:::
+
+::: {.column width="40%"}
+
+![Siméon Denis Poisson](imgs/poisson.jpg){fig-align="right"}
+
+:::
+
+::::
+
+
+
+
+
+# Poisson processes
+
+
+## Visualising the Poisson process
+
+```{r}
+1+1
+```
+
+
+  
