@@ -85,7 +85,7 @@ $$
 ::: {.column width="60%"}
 
 ::: {.fragment .fade-out}
-«La vie n’est bonne qu’à deux choses: à faire des mathématiques et à les professer.»
+«La vie n’est bonne qu’à deux choses: à faire des mathématiques et à les professer»
 :::
 
 ::: {.fragment}
