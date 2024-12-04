@@ -14,6 +14,7 @@ format:
 editor: source
 ---
 
+
 ```{r setup, load_refs, include=FALSE, cache=FALSE}
 library(ggplot2)
 library(dplyr)
@@ -23,6 +24,7 @@ library(RColorBrewer)
 library(purrr)
 library(distributional)
 library(ggdist)
+
 
 figdpi <- 96*3
 
@@ -76,14 +78,30 @@ What is the probability of exceeding 20 customers during the first hour after op
 
 # Poisson processes
 
+## The Poisson Distribution
+
+::: callout-note
+## Definition: Poisson distribution
+
+The random variable $X \in \mathbb{N}_0$ is called a Poisson random variable with rate $\lambda > 0$ if
+
+$$
+\mathbb{P}(X = k) = p_\lambda(k) =\frac{\lambda^{k}e^{-\lambda}}{k!}, \quad k \in \mathbb{N}_0.
+$$
+
+We also say $X \sim \mathcal{P}(\lambda)$ for short.
+:::
+
 ## The Poisson process
 
 ::: callout-note
 ## Definition: Poisson process
 
-1. 
-2.
-3.
+The counting process $\{N(t), t \in [0,\infty)\}$ is called a Poisson Process with rate $\lambda > 0$ if
+
+1. $N(0)=0$,
+2. $N(t)$ has independent increments, and
+3. The number of arrivals in any interval of length $s$ is $\text{Pois}(\lambda s)$ distributed.
 
 :::
 
@@ -309,21 +327,181 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
 ```
 
 
-# Activity
+## Arrival times
 
-## Tools of the day
+<!----
+```{r diagram, engine = 'tikz'}
+\begin{tikzpicture}
 
-## The Poisson Distribution
+\draw[->] (0.5,0) -- (7,0) node[right] {Time};
 
-::: callout-note
-## Poisson random variable
 
-The random variable $X \in \mathbb{N}_0$ is Poisson distributed with rate $\lambda$ or
+\foreach \x in {0.5, 1.8, 3.3, 4.6, 6.0} {
+    \draw[fill=black] (\x, 0) circle (2pt); % Arrival points
+}
 
-$X \sim \mathcal{P}(\lambda)$ when $$
-\mathbb{P}(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}, \quad \forall k \in \mathbb{N}_0
-$$
+
+\draw[<->] (0.5, 0.4) -- (1.8, 0.4) node[midway, above] {$X_1$};
+\draw[<->] (1.8, 0.4) -- (3.3, 0.4) node[midway, above] {$X_2$};
+\draw[<->] (3.3, 0.4) -- (4.6, 0.4) node[midway, above] {$X_3$};
+\draw[<->] (4.6, 0.4) -- (6.0, 0.4) node[midway, above] {$X_4$};
+
+
+\node[below] at (0.5, 0) {$0$};
+\node[below] at (1.8, 0) {$T_1$};
+\node[below] at (3.3, 0) {$T_2$};
+\node[below] at (4.6, 0) {$T_3$};
+\node[below] at (6.0, 0) {$T_4$};
+
+\end{tikzpicture}
+```
+---->
+
+::: {.callout-note}
+## Arrival time
+
+$T_i =$ Time of $i$th arrival, for $i \in \{1,2,\ldots\}$
+
 :::
+
+::: {.callout-note}
+## Interarrival time
+
+$X_{i} =$ Time between $(i-1)$th and $i$th arrival, for $i \in \{1,2,\ldots\}$
+
+$X_{i} = T_{i} - T_{i-1}$, $T_0=0$
+:::
+
+[]: Should I fill in the last property manually?
+
+## Properties of Poisson processes
+
+::: {.callout-tip}
+## Property 1
+
+For fixed $t$,  $N(t) \sim \text{Pois}(\lambda t)$
+:::
+
+::: {.callout-tip}
+## Property 2
+
+$\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)$ 
+
+for $s_1 < s_1 + t_1 \leq s_2 < s_2 + t_2$, $t_1,t_2>0$ and $k_1,k_2 \in \mathbb{N}_0$.
+:::
+
+::: {.callout-tip}
+## Property 3
+
+The interarrival times $X_i \sim \text{Exp}(\lambda)$, for $i \in \{1,2,\ldots\}$
+:::
+# Activity 1
+
+## Quiz
+
+State which elements of the Poisson Process definition are required for each property:
+
+::: {.callout-tip}
+## Property 1
+
+For fixed $t$,  $N(t) \sim \text{Pois}(\lambda t)$.
+:::
+
+a. $N(0)=0$,
+b. Independent increments
+c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
+
+## Quiz
+
+State which elements of the Poisson Process definition are required for each property:
+
+::: {.callout-tip}
+## Property 2
+
+$\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)$ 
+
+for $0\leq s_1 < s_1 + t_1 \leq s_2 < s_2 + t_2$, and $k_1,k_2 \in \mathbb{N}_0$.
+:::
+
+a. $N(0)=0$,
+b. Independent increments
+c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
+  
+[]: Discuss with partner. 1 a/c, 2 b/c
+
+
+# Demonstration 1
+
+## Extra tools
+
+Exponential distribution property
+
+Law of total probability
+
+## Proof of interarrival times property {.scrollable}
+
+::: {.callout-tip}
+## Property 3
+
+The interarrival times $X_k \sim \text{Exp}(\lambda)$, for $k \in \{1,2,\ldots\}$
+:::
+
+::: {.fragment}
+
+For times $0 < s \leq t$ and arrival index $i \in \{1,2,\ldots\}$ consider 
+
+$\mathbb{P}(X_{i} > t \mid T_{i-1} = s)$
+:::
+
+::: {.fragment}
+$= \mathbb{P}(T_{i} - T_{i-1}  > t \mid T_{i-1} = s)$
+:::
+
+$$~$$
+
+::: {.fragment}
+$= \mathbb{P}(T_{i} > s+t \mid T_{i-1} = s)$
+:::
+
+$$~$$
+
+::: {.fragment}
+$= \mathbb{P}(N(s+t) = N(s) \mid N(s) = i-1)$
+:::
+
+$$~$$
+
+::: {.fragment}
+$= \mathbb{P}(N(s+t) - N(s) = 0  \mid N(s) - N(0) = i-1)$
+:::
+
+$$~$$
+
+::: {.fragment}
+$= p_{\lambda t}(0) = e^{-\lambda t}$
+:::
+
+$$~$$
+
+::: {.fragment}
+Now consider $\mathbb{P}(X_{i} > t)$
+:::
+
+::: {.fragment}
+$= \mathbb{E}_{S}[\mathbb{P}(X_{i} > t \mid T_{i-1}=S)] = e^{-\lambda t}$
+:::
+
+$$~$$
+
+::: {.fragment}
+We can then recognise that $X_i \sim \text{Exp}(\lambda)$.
+:::
+
+[]: Property 2
+
+## Interarrival times: Strategy review
+
+
 
 # History
 
