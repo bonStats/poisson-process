@@ -29,7 +29,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="pp_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="style.css">
   <link href="pp_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -348,9 +368,7 @@ Joshua J Bon
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
-<li class="fragment"><p>Motivation</p></li>
-<li class="fragment"><p>Tools of the day</p></li>
-<li class="fragment"><p>History</p></li>
+<li class="fragment"><p>Motivation &amp; History</p></li>
 <li class="fragment"><p>Poisson Process</p>
 <ul>
 <li class="fragment">Definition</li>
@@ -368,15 +386,110 @@ Joshua J Bon
 </div>
 </div></div>
 </section>
-<section id="motivation" class="title-slide slide level1 center">
-<h1>Motivation</h1>
+<section>
+<section id="motivating-example" class="title-slide slide level1 center">
+<h1>Motivating example</h1>
 
 </section>
-
+<section id="poissons-cafe" class="slide level2">
+<h2>Poisson’s Cafe</h2>
+<ul>
+<li class="fragment"><p>Imagine you run a small coffee shop on Rundle Mall.</p></li>
+<li class="fragment"><p>Frequency of customer arrivals determines staffing.</p></li>
+</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Coffee Shop Questions</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment">What is the probability of exceeding 20 customers during the first after opening?</li>
+<li class="fragment">After one customer arrives, what is the average time until the next customer arrives?</li>
+</ul>
+</div>
+</div>
+</div>
+<ul>
+<li class="fragment">Not just coffee shops: Airports, call centres, any queues!</li>
+</ul>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Coffee Shop Q1</strong></p>
+</div>
+<div class="callout-content">
+<p>What is the probability of exceeding 20 customers during the first after opening?</p>
+</div>
+</div>
+</div>
+</section></section>
 <section>
-<section id="tools-of-the-day" class="title-slide slide level1 center">
-<h1>Tools of the day</h1>
+<section id="history" class="title-slide slide level1 center">
+<h1>History</h1>
 
+</section>
+<section id="siméon-denis-poisson" class="slide level2">
+<h2>Siméon Denis Poisson</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="fragment fade-out">
+<p>«La vie n’est bonne qu’à deux choses: à faire des mathématiques et à les professer»</p>
+</div>
+<div class="fragment">
+<p>“Life is only good for two things: doing mathematics and teaching it”</p>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="imgs/poisson.jpg"></p>
+<figcaption>Siméon Denis Poisson</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="historical-examples1" class="slide level2">
+<h2>Historical examples<sup>1</sup></h2>
+<p>Poisson did not use or discover the Poisson process!</p>
+<ul>
+<li class="fragment"><p>Delays and congestion in telephone systems (1909)</p></li>
+<li class="fragment"><p>Number of <span class="math inline">\(\alpha\)</span>-particles detected by Geiger count (1910)</p></li>
+<li class="fragment"><p>Adopted quickly in: biology, ecology, engineering, physics</p></li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>See <span class="citation" data-cites="stirzaker2000advice">Stirzaker (<a href="#/references" role="doc-biblioref" onclick="">2000</a>)</span> for more details</p></li></ol></aside></section></section>
+<section>
+<section id="poisson-processes" class="title-slide slide level1 center">
+<h1>Poisson processes</h1>
+
+</section>
+<section id="visualising-the-poisson-process" class="slide level2">
+<h2>Visualising the Poisson process</h2>
+
+<img data-src="pp_files/figure-revealjs/PPr1-1.png" width="2880" class="r-stretch"></section>
+<section id="visualising-the-poisson-process-1" class="slide level2">
+<h2>Visualising the Poisson process</h2>
+
+<img data-src="pp_files/figure-revealjs/PPr2-1.png" width="2880" class="r-stretch"></section>
+<section id="visualising-the-poisson-process-2" class="slide level2">
+<h2>Visualising the Poisson process</h2>
+
+<img data-src="pp_files/figure-revealjs/PPr3-1.png" width="2880" class="r-stretch"></section></section>
+<section>
+<section id="activity" class="title-slide slide level1 center">
+<h1>Activity</h1>
+
+</section>
+<section id="tools-of-the-day" class="slide level2">
+<h2>Tools of the day</h2>
 </section>
 <section id="the-poisson-distribution" class="slide level2">
 <h2>The Poisson Distribution</h2>
@@ -396,44 +509,20 @@ Joshua J Bon
 </div>
 </div>
 </div>
-</section>
-<section id="examples" class="slide level2">
-<h2>Examples</h2>
 </section></section>
 <section>
-<section id="history" class="title-slide slide level1 center">
-<h1>History</h1>
+<section id="more" class="title-slide slide level1 center">
+<h1>More</h1>
 
 </section>
-<section id="siméon-denis-poisson" class="slide level2">
-<h2>Siméon Denis Poisson</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
-<div class="fragment fade-out">
-<p>«La vie n’est bonne qu’à deux choses: à faire des mathématiques et à les professer.»</p>
-</div>
-<div class="fragment">
-<p>“Life is only good for two things: doing mathematics and teaching it”</p>
-</div>
-</div><div class="column" style="width:40%;">
-<div class="quarto-figure quarto-figure-right">
-<figure>
-<p><img data-src="imgs/poisson.jpg"></p>
-<figcaption>Siméon Denis Poisson</figcaption>
-</figure>
-</div>
-</div></div>
-</section></section>
-<section>
-<section id="poisson-processes" class="title-slide slide level1 center">
-<h1>Poisson processes</h1>
-
+<section id="lines-damned-lines-and-queuing-theory" class="slide level2">
+<h2>Lines, damned lines, and queuing theory</h2>
 </section>
-<section id="visualising-the-poisson-process" class="slide level2">
-<h2>Visualising the Poisson process</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-stirzaker2000advice" class="csl-entry" role="listitem">
+Stirzaker, David. 2000. <span>“Advice to Hedgehogs, or, Constants Can Vary.”</span> <em>The Mathematical Gazette</em> 84 (500): 197–210.
 </div>
 </div>
 <div class="quarto-auto-generated-content">
@@ -442,6 +531,7 @@ Joshua J Bon
 </div>
 </div>
 </section></section>
+
     </div>
   </div>
 

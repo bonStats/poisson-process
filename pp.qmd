@@ -32,11 +32,7 @@ library(ggdist)
 
 ::: {.column width="60%"}
 
-- Motivation
-
-- Tools of the day
-  
-- History
+-  Motivation & History
   
 - Poisson Process 
   - Definition
@@ -55,26 +51,35 @@ library(ggdist)
 
 ::::
 
-# Motivation
+# Motivating example
 
-## Lines, damned lines, and queuing theory
+## Poisson's Cafe
 
+- Imagine you run a small coffee shop on Rundle Mall. 
 
+- Frequency of customer arrivals determines staffing.
 
-# Tools of the day
+::: {.callout-tip}
+## Coffee Shop Questions 
 
-## The Poisson Distribution
+- What is the probability of exceeding 20 customers during the first after opening?
+- After one customer arrives, what is the average time until the next customer arrives?
 
-::: {.callout-note}
-## Poisson random variable
-The random variable $X \in \mathbb{N}_0$ is Poisson distributed with rate $\lambda$ or
-
-$X \sim \mathcal{P}(\lambda)$ when
-$$
-\mathbb{P}(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}, \quad \forall k \in \mathbb{N}_0
-$$
 :::
 
+
+- Not just coffee shops: Airports, call centres, any queues!
+
+##
+
+::: {.callout-tip}
+## Coffee Shop Q1
+
+What is the probability of exceeding 20 customers during the first after opening?
+
+:::
+
+[]: Develop notation of process
 
 # History
 
@@ -88,16 +93,13 @@ $$
 «La vie n’est bonne qu’à deux choses: à faire des mathématiques et à les professer»
 :::
 
+[]:Lucky for you and me today we're learning about probability and not French
+
 ::: {.fragment}
 "Life is only good for two things: doing mathematics and teaching it"
 :::
 
-## Coffee and phone calls
-
-## Death by horse kick
-
-## Death by horse kick
-
+[]: And coffee
 
 :::
 
@@ -109,8 +111,16 @@ $$
 
 ::::
 
+## Historical examples[^1]
 
+Poisson did not use or discover the Poisson process!
 
+- Delays and congestion in telephone systems (1909)
+- Number of $\alpha$-particles detected by Geiger count (1910)
+
+- Adopted quickly in: biology, ecology, engineering, physics
+
+[^1]: See @stirzaker2000advice for more details
 
 
 # Poisson processes
@@ -118,9 +128,92 @@ $$
 
 ## Visualising the Poisson process
 
-```{r}
-1+1
+```{r PPr1, echo=FALSE, fig.dpi=96*3}
+
+rate <- 1
+simulate_pp <- function(time, lambda){
+  inter_arrival_times <- c()
+  last_time <- 0
+  while (last_time < time) {
+    next_arrival <- rexp(n = 1, rate = lambda)
+    inter_arrival_times <- c(inter_arrival_times, next_arrival)
+    last_time <- last_time + next_arrival
+  }
+  num_arrivals <- length(inter_arrival_times)-1
+  arrival_times <- cumsum(inter_arrival_times[1:num_arrivals]) # remove last arrival
+  data.frame(Time = c(0,arrival_times), Count = 0:num_arrivals)
+}
+
+xxtitle <- expression(paste('Total customers, ',N(t)))
+yytitle <- expression(paste('Time, ',t))
+
+data1 <- simulate_pp(10,1)
+
+ggplot() +
+  geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data1) +
+  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data1, Count > 0)) +
+  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = c(0,15)) +
+  scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B")) +
+  theme_bw() +
+  theme (text = element_text (size = 18))
+
+```
+## Visualising the Poisson process
+
+```{r PPr2, echo=FALSE, fig.dpi=96*3}
+
+data2 <- simulate_pp(10,1)
+
+ggplot() +
+  geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data2) +
+  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data2, Count > 0)) +
+  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = c(0,15)) +
+  scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B")) +
+  theme_bw() +
+  theme (text = element_text (size = 18))
+
 ```
 
+## Visualising the Poisson process
 
-  
+```{r PPr3, echo=FALSE, fig.dpi=96*3}
+
+data3 <- simulate_pp(10,1)
+
+ggplot() +
+  geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data3) +
+  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data3, Count > 0)) +
+  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = c(0,15)) +
+  scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B")) +
+  theme_bw() +
+  theme (text = element_text (size = 18))
+
+```
+
+# Activity
+
+## Tools of the day
+
+## The Poisson Distribution
+
+::: {.callout-note}
+## Poisson random variable
+The random variable $X \in \mathbb{N}_0$ is Poisson distributed with rate $\lambda$ or
+
+$X \sim \mathcal{P}(\lambda)$ when
+$$
+\mathbb{P}(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}, \quad \forall k \in \mathbb{N}_0
+$$
+:::
+
+# More
+
+## Lines, damned lines, and queuing theory
+
+## References
+
+::: {#refs}
+:::
