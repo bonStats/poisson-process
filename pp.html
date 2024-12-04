@@ -368,11 +368,12 @@ Joshua J Bon
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
-<li class="fragment"><p>Motivation &amp; History</p></li>
+<li class="fragment"><p>Motivating example</p></li>
 <li class="fragment"><p>Poisson Process</p>
 <ul>
 <li class="fragment">Definition</li>
 <li class="fragment">Properties</li>
+<li class="fragment">History</li>
 <li class="fragment">Activity</li>
 </ul></li>
 <li class="fragment"><p>Recap and more</p></li>
@@ -407,7 +408,7 @@ Joshua J Bon
 </div>
 <div class="callout-content">
 <ul>
-<li class="fragment">What is the probability of exceeding 20 customers during the first after opening?</li>
+<li class="fragment">What is the probability of exceeding 20 customers during the first hour after opening?</li>
 <li class="fragment">After one customer arrives, what is the average time until the next customer arrives?</li>
 </ul>
 </div>
@@ -428,7 +429,92 @@ Joshua J Bon
 <p><strong>Coffee Shop Q1</strong></p>
 </div>
 <div class="callout-content">
-<p>What is the probability of exceeding 20 customers during the first after opening?</p>
+<p>What is the probability of exceeding 20 customers during the first hour after opening?</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="poisson-processes" class="title-slide slide level1 center">
+<h1>Poisson processes</h1>
+
+</section>
+<section id="visualising-the-poisson-process" class="slide level2">
+<h2>Visualising the Poisson process</h2>
+
+<img data-src="pp_files/figure-revealjs/PPr1-1.png" width="2880" class="r-stretch quarto-figure-center"><p class="caption">Process realisation 1</p></section>
+<section id="visualising-the-poisson-process-1" class="slide level2">
+<h2>Visualising the Poisson process</h2>
+
+<img data-src="pp_files/figure-revealjs/PPr2-1.png" width="2880" class="r-stretch quarto-figure-center"><p class="caption">Process realisation 2</p></section>
+<section id="visualising-the-poisson-process-2" class="slide level2">
+<h2>Visualising the Poisson process</h2>
+
+<img data-src="pp_files/figure-revealjs/PPr3-1.png" width="2880" class="r-stretch quarto-figure-center"><p class="caption">Process realisation 3</p></section>
+<section id="visualising-the-poisson-process-3" class="slide level2">
+<h2>Visualising the Poisson process</h2>
+
+<img data-src="pp_files/figure-revealjs/PPmean-1.png" width="2880" class="r-stretch quarto-figure-center"><p class="caption">Process mean and realisations</p></section>
+<section id="visualising-the-poisson-process-4" class="slide level2">
+<h2>Visualising the Poisson Process</h2>
+<div>
+
+</div>
+<div class="cell quarto-layout-panel" data-layout="[1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="pp_files/figure-revealjs/PPvalue2-1.png" width="2880"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="pp_files/figure-revealjs/PPvalue2-2.png" width="2880"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="visualising-the-poisson-process-5" class="slide level2">
+<h2>Visualising the Poisson Process</h2>
+<div>
+
+</div>
+<div class="cell quarto-layout-panel" data-layout="[1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="pp_files/figure-revealjs/PPvalue4-1.png" width="2880"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="pp_files/figure-revealjs/PPvalue4-2.png" width="2880"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="visualising-the-poisson-process-6" class="slide level2">
+<h2>Visualising the Poisson Process</h2>
+<div>
+
+</div>
+<div class="cell quarto-layout-panel" data-layout="[1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="pp_files/figure-revealjs/PPvalue6-1.png" width="2880"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="pp_files/figure-revealjs/PPvalue6-2.png" width="2880"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="visualising-the-poisson-process-7" class="slide level2">
+<h2>Visualising the Poisson Process</h2>
+<div>
+
+</div>
+<div class="cell quarto-layout-panel" data-layout="[1, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="pp_files/figure-revealjs/PPvalue8-1.png" width="2880"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="pp_files/figure-revealjs/PPvalue8-2.png" width="2880"></p>
 </div>
 </div>
 </div>
@@ -466,23 +552,6 @@ Joshua J Bon
 <li class="fragment"><p>Adopted quickly in: biology, ecology, engineering, physics</p></li>
 </ul>
 <aside><ol class="aside-footnotes"><li id="fn1"><p>See <span class="citation" data-cites="stirzaker2000advice">Stirzaker (<a href="#/references" role="doc-biblioref" onclick="">2000</a>)</span> for more details</p></li></ol></aside></section></section>
-<section>
-<section id="poisson-processes" class="title-slide slide level1 center">
-<h1>Poisson processes</h1>
-
-</section>
-<section id="visualising-the-poisson-process" class="slide level2">
-<h2>Visualising the Poisson process</h2>
-
-<img data-src="pp_files/figure-revealjs/PPr1-1.png" width="2880" class="r-stretch"></section>
-<section id="visualising-the-poisson-process-1" class="slide level2">
-<h2>Visualising the Poisson process</h2>
-
-<img data-src="pp_files/figure-revealjs/PPr2-1.png" width="2880" class="r-stretch"></section>
-<section id="visualising-the-poisson-process-2" class="slide level2">
-<h2>Visualising the Poisson process</h2>
-
-<img data-src="pp_files/figure-revealjs/PPr3-1.png" width="2880" class="r-stretch"></section></section>
 <section>
 <section id="activity" class="title-slide slide level1 center">
 <h1>Activity</h1>

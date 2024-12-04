@@ -11,7 +11,7 @@ format:
     incremental: true 
     css: style.css
     chalkboard: true
-editor: visual
+editor: source
 ---
 
 ```{r setup, load_refs, include=FALSE, cache=FALSE}
@@ -24,113 +24,62 @@ library(purrr)
 library(distributional)
 library(ggdist)
 
+figdpi <- 96*3
+
 ```
 
 ## Lecture overview
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="60%"}
+-   Motivating example
 
--  Motivation & History
-  
-- Poisson Process 
-  - Definition
-  - Properties
-  - Activity
+-   Poisson Process
 
-- Recap and more
+    -   Definition
+    -   Properties
+    -   History
+    -   Activity
 
+-   Recap and more
 :::
 
 ::: {.column width="40%"}
-
 ![Siméon Denis Poisson](imgs/poisson.jpg){fig-align="right"}
-
 :::
-
-::::
+:::::
 
 # Motivating example
 
 ## Poisson's Cafe
 
-- Imagine you run a small coffee shop on Rundle Mall. 
+-   Imagine you run a small coffee shop on Rundle Mall.
 
-- Frequency of customer arrivals determines staffing.
+-   Frequency of customer arrivals determines staffing.
 
-::: {.callout-tip}
-## Coffee Shop Questions 
+::: callout-tip
+## Coffee Shop Questions
 
-- What is the probability of exceeding 20 customers during the first after opening?
-- After one customer arrives, what is the average time until the next customer arrives?
-
+-   What is the probability of exceeding 20 customers during the first hour after opening?
+-   After one customer arrives, what is the average time until the next customer arrives?
 :::
 
+-   Not just coffee shops: Airports, call centres, any queues!
 
-- Not just coffee shops: Airports, call centres, any queues!
+## 
 
-##
-
-::: {.callout-tip}
+::: callout-tip
 ## Coffee Shop Q1
 
-What is the probability of exceeding 20 customers during the first after opening?
-
+What is the probability of exceeding 20 customers during the first hour after opening?
 :::
-
-[]: Develop notation of process
-
-# History
-
-## Siméon Denis Poisson
-
-:::: {.columns}
-
-::: {.column width="60%"}
-
-::: {.fragment .fade-out}
-«La vie n’est bonne qu’à deux choses: à faire des mathématiques et à les professer»
-:::
-
-[]:Lucky for you and me today we're learning about probability and not French
-
-::: {.fragment}
-"Life is only good for two things: doing mathematics and teaching it"
-:::
-
-[]: And coffee
-
-:::
-
-::: {.column width="40%"}
-
-![Siméon Denis Poisson](imgs/poisson.jpg){fig-align="right"}
-
-:::
-
-::::
-
-## Historical examples[^1]
-
-Poisson did not use or discover the Poisson process!
-
-- Delays and congestion in telephone systems (1909)
-- Number of $\alpha$-particles detected by Geiger count (1910)
-
-- Adopted quickly in: biology, ecology, engineering, physics
-
-[^1]: See @stirzaker2000advice for more details
-
 
 # Poisson processes
 
-
 ## Visualising the Poisson process
 
-```{r PPr1, echo=FALSE, fig.dpi=96*3}
+```{r PPr1, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 1'}
 
-rate <- 1
 simulate_pp <- function(time, lambda){
   inter_arrival_times <- c()
   last_time <- 0
@@ -141,36 +90,42 @@ simulate_pp <- function(time, lambda){
   }
   num_arrivals <- length(inter_arrival_times)-1
   arrival_times <- cumsum(inter_arrival_times[1:num_arrivals]) # remove last arrival
-  data.frame(Time = c(0,arrival_times), Count = 0:num_arrivals)
+  data.frame(Time = c(0,arrival_times,time), Count = c(0:num_arrivals,num_arrivals))
 }
 
-xxtitle <- expression(paste('Total customers, ',N(t)))
+# xxtitle <- expression(paste('Total customers, ',N(t)))
+xxtitle <- 'Total customers'
 yytitle <- expression(paste('Time, ',t))
 
-data1 <- simulate_pp(10,1)
+total_time <- 10
+rate <- 1
+ylimits <- c(0,15)
+
+data1 <- simulate_pp(total_time,rate)
 
 ggplot() +
   geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data1) +
-  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data1, Count > 0)) +
-  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = c(0,15)) +
+  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data1, Time > 0 & Time < total_time )) +
+  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
   scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
-  scale_colour_manual ("", values = c("#E66100","#5D3A9B")) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("New arrival", expression(N(t)))) +
   theme_bw() +
   theme (text = element_text (size = 18))
 
 ```
+
 ## Visualising the Poisson process
 
-```{r PPr2, echo=FALSE, fig.dpi=96*3}
+```{r PPr2, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 2'}
 
-data2 <- simulate_pp(10,1)
+data2 <- simulate_pp(total_time,rate)
 
 ggplot() +
   geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data2) +
-  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data2, Count > 0)) +
-  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = c(0,15)) +
+  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data2, Time > 0 & Time < total_time )) +
+  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
   scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
-  scale_colour_manual ("", values = c("#E66100","#5D3A9B")) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("New arrival", expression(N(t)))) +
   theme_bw() +
   theme (text = element_text (size = 18))
 
@@ -178,20 +133,166 @@ ggplot() +
 
 ## Visualising the Poisson process
 
-```{r PPr3, echo=FALSE, fig.dpi=96*3}
+```{r PPr3, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 3'}
 
-data3 <- simulate_pp(10,1)
+data3 <- simulate_pp(total_time,rate)
 
 ggplot() +
   geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data3) +
-  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data3, Count > 0)) +
-  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = c(0,15)) +
+  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data3, Time > 0 & Time < total_time )) +
+  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
   scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
-  scale_colour_manual ("", values = c("#E66100","#5D3A9B")) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("New arrival", expression(N(t)))) +
   theme_bw() +
   theme (text = element_text (size = 18))
 
 ```
+
+## Visualising the Poisson process
+
+```{r PPmean, echo=FALSE, fig.dpi=96*3, fig.cap='Process mean and realisations'}
+
+data_all <- bind_rows(data1,data2,data3,.id = "Realisation")
+data_mean <- data.frame(Time=c(0,total_time),Count=c(0,total_time*rate))
+
+allplot <- ggplot() +
+  geom_step(aes(x=Time,y=Count, colour = Realisation), data = data_all) +
+  geom_line(aes(x=Time,y=Count, colour = "Mean value"), data = data_mean, linetype = 'solid') +
+  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
+  scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
+  scale_colour_manual("", values = c("#CC6677","#AA4499","#882255","#117733"), labels = c(paste0(expression(N(t)), ', realisation 1'),paste0(expression(N(t)), ', realisation 2'),paste0(expression(N(t)), ', realisation 3'), paste0(expression(E[N(t)]), ', mean value'))) +
+  theme_bw() +
+  theme (text = element_text (size = 18))
+
+allplot
+
+```
+
+## Visualising the Poisson Process
+
+```{r}
+#| label: PPvalue2
+#| layout: "[1, 1]"
+#| echo: false
+#| fig-dpi: !expr 'figdpi'
+#|  
+
+intercept <- 2
+distr <- paste0("pois(",intercept*rate,")")
+
+allplot + 
+  geom_segment(aes(x=intercept,y=0,xend=intercept,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
+  geom_segment(aes(x=intercept,y=intercept*rate,xend=total_time,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
+  theme(text = element_text (size = 22), legend.position = 'none')
+
+ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour = "black"), point_interval = 'mean_qi', fill = "grey", slab_colour = "black", outline_bars = TRUE) + 
+  scale_x_continuous("Probability") +
+  scale_y_continuous("", limits = ylimits) + 
+  theme_bw() + theme (text = element_text (size = 22), legend.position = 'none')
+
+```
+## Visualising the Poisson Process
+
+```{r}
+#| label: PPvalue4
+#| layout: "[1, 1]"
+#| echo: false
+#| fig-dpi: !expr 'figdpi'
+#|  
+
+intercept <- 4
+distr <- paste0("pois(",intercept*rate,")")
+
+allplot + 
+  geom_segment(aes(x=intercept,y=0,xend=intercept,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
+  geom_segment(aes(x=intercept,y=intercept*rate,xend=total_time,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
+  theme(text = element_text (size = 22), legend.position = 'none')
+
+ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour = "black"), point_interval = 'mean_qi', fill = "grey", slab_colour = "black", outline_bars = TRUE) + 
+  scale_x_continuous("Probability") +
+  scale_y_continuous("", limits = ylimits) + 
+  theme_bw() + theme (text = element_text (size = 22), legend.position = 'none')
+
+```
+
+## Visualising the Poisson Process
+
+```{r}
+#| label: PPvalue6
+#| layout: "[1, 1]"
+#| echo: false
+#| fig-dpi: !expr 'figdpi'
+#|  
+
+intercept <- 6
+distr <- paste0("pois(",intercept*rate,")")
+
+allplot + 
+  geom_segment(aes(x=intercept,y=0,xend=intercept,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
+  geom_segment(aes(x=intercept,y=intercept*rate,xend=total_time,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
+  theme(text = element_text (size = 22), legend.position = 'none')
+
+ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour = "black"), point_interval = 'mean_qi', fill = "grey", slab_colour = "black", outline_bars = TRUE) + 
+  scale_x_continuous("Probability") +
+  scale_y_continuous("", limits = ylimits) + 
+  theme_bw() + theme (text = element_text (size = 22), legend.position = 'none')
+
+```
+
+## Visualising the Poisson Process
+
+```{r}
+#| label: PPvalue8
+#| layout: "[1, 1]"
+#| echo: false
+#| fig-dpi: !expr 'figdpi'
+#|  
+
+intercept <- 8
+distr <- paste0("pois(",intercept*rate,")")
+
+allplot + 
+  geom_segment(aes(x=intercept,y=0,xend=intercept,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
+  geom_segment(aes(x=intercept,y=intercept*rate,xend=total_time,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
+  theme(text = element_text (size = 22), legend.position = 'none')
+
+ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour = "black"), point_interval = 'mean_qi', fill = "grey", slab_colour = "black", outline_bars = TRUE) + 
+  scale_x_continuous("Probability") +
+  scale_y_continuous("", limits = ylimits) + 
+  theme_bw() + theme (text = element_text (size = 22), legend.position = 'none')
+
+```
+# History
+
+## Siméon Denis Poisson
+
+::::::: columns
+::::: {.column width="60%"}
+::: {.fragment .fade-out}
+«La vie n’est bonne qu’à deux choses: à faire des mathématiques et à les professer»
+:::
+
+::: fragment
+"Life is only good for two things: doing mathematics and teaching it"
+:::
+:::::
+
+::: {.column width="40%"}
+![Siméon Denis Poisson](imgs/poisson.jpg){fig-align="right"}
+:::
+:::::::
+
+## Historical examples[^1]
+
+[^1]: See @stirzaker2000advice for more details
+
+Poisson did not use or discover the Poisson process!
+
+-   Delays and congestion in telephone systems (1909)
+
+-   Number of $\alpha$-particles detected by Geiger count (1910)
+
+-   Adopted quickly in: biology, ecology, engineering, physics
 
 # Activity
 
@@ -199,12 +300,12 @@ ggplot() +
 
 ## The Poisson Distribution
 
-::: {.callout-note}
+::: callout-note
 ## Poisson random variable
+
 The random variable $X \in \mathbb{N}_0$ is Poisson distributed with rate $\lambda$ or
 
-$X \sim \mathcal{P}(\lambda)$ when
-$$
+$X \sim \mathcal{P}(\lambda)$ when $$
 \mathbb{P}(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}, \quad \forall k \in \mathbb{N}_0
 $$
 :::
