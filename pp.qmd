@@ -157,7 +157,7 @@ data_mean <- data.frame(Time=c(0,total_time),Count=c(0,total_time*rate))
 
 allplot <- ggplot() +
   geom_step(aes(x=Time,y=Count, colour = Realisation), data = data_all) +
-  geom_line(aes(x=Time,y=Count, colour = "Mean value"), data = data_mean, linetype = 'solid') +
+  geom_line(aes(x=Time,y=Count, colour = "Mean value"), data = data_mean, linetype = 'solid', linewidth = 2) +
   scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
   scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
   scale_colour_manual("", values = c("#CC6677","#AA4499","#882255","#117733"), labels = c(paste0(expression(N(t)), ', realisation 1'),paste0(expression(N(t)), ', realisation 2'),paste0(expression(N(t)), ', realisation 3'), paste0(expression(E[N(t)]), ', mean value'))) +
@@ -168,20 +168,24 @@ allplot
 
 ```
 
-## Visualising the Poisson Process
+## Visualising the Poisson process
 
 ```{r}
 #| label: PPvalue2
 #| layout: "[1, 1]"
 #| echo: false
 #| fig-dpi: !expr 'figdpi'
-#|  
+#| fig-asp: 1
+#| fig-cap: ""
+#| fig-subcap: 
+#|   - "Process mean and realisations"
+#|   - "Distribution at time t=2"
 
 intercept <- 2
 distr <- paste0("pois(",intercept*rate,")")
 
 allplot + 
-  geom_segment(aes(x=intercept,y=0,xend=intercept,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
+  geom_segment(aes(x=intercept,y=0,xend=intercept,yend=intercept*rate), linetype = 'longdash', linewidth = 1.5) + 
   geom_segment(aes(x=intercept,y=intercept*rate,xend=total_time,yend=intercept*rate), linetype = 'longdash', linewidth = 1.8) + 
   theme(text = element_text (size = 22), legend.position = 'none')
 
@@ -191,14 +195,20 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
   theme_bw() + theme (text = element_text (size = 22), legend.position = 'none')
 
 ```
-## Visualising the Poisson Process
+
+Distribution at time t
+
+## Visualising the Poisson process
 
 ```{r}
 #| label: PPvalue4
 #| layout: "[1, 1]"
 #| echo: false
-#| fig-dpi: !expr 'figdpi'
-#|  
+#| fig-asp: 1
+#| fig-cap: ""
+#| fig-subcap: 
+#|   - "Process mean and realisations"
+#|   - "Distribution at time t=4"
 
 intercept <- 4
 distr <- paste0("pois(",intercept*rate,")")
@@ -215,14 +225,17 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
 
 ```
 
-## Visualising the Poisson Process
+## Visualising the Poisson process
 
 ```{r}
 #| label: PPvalue6
 #| layout: "[1, 1]"
 #| echo: false
-#| fig-dpi: !expr 'figdpi'
-#|  
+#| fig-asp: 1
+#| fig-cap: ""
+#| fig-subcap: 
+#|   - "Process mean and realisations"
+#|   - "Distribution at time t=6"
 
 intercept <- 6
 distr <- paste0("pois(",intercept*rate,")")
@@ -239,15 +252,19 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
 
 ```
 
-## Visualising the Poisson Process
+## Visualising the Poisson process
 
 ```{r}
 #| label: PPvalue8
 #| layout: "[1, 1]"
 #| echo: false
 #| fig-dpi: !expr 'figdpi'
-#|  
-
+#| fig-asp: 1
+#| fig-cap: ""
+#| fig-subcap: 
+#|   - "Process mean and realisations"
+#|   - "Distribution at time t=8"
+ 
 intercept <- 8
 distr <- paste0("pois(",intercept*rate,")")
 
