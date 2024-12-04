@@ -329,7 +329,6 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
 
 ## Arrival times
 
-<!----
 ```{r diagram, engine = 'tikz'}
 \begin{tikzpicture}
 
@@ -355,7 +354,6 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
 
 \end{tikzpicture}
 ```
----->
 
 ::: {.callout-note}
 ## Arrival time
