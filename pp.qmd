@@ -76,9 +76,20 @@ What is the probability of exceeding 20 customers during the first hour after op
 
 # Poisson processes
 
+## The Poisson process
+
+::: callout-note
+## Definition: Poisson process
+
+1. 
+2.
+3.
+
+:::
+
 ## Visualising the Poisson process
 
-```{r PPr1, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 1'}
+```{r PPr1, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 1', cache=TRUE}
 
 simulate_pp <- function(time, lambda){
   inter_arrival_times <- c()
@@ -116,7 +127,7 @@ ggplot() +
 
 ## Visualising the Poisson process
 
-```{r PPr2, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 2'}
+```{r PPr2, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 2', cache=TRUE}
 
 data2 <- simulate_pp(total_time,rate)
 
@@ -133,7 +144,7 @@ ggplot() +
 
 ## Visualising the Poisson process
 
-```{r PPr3, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 3'}
+```{r PPr3, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 3', cache=TRUE}
 
 data3 <- simulate_pp(total_time,rate)
 
@@ -150,17 +161,34 @@ ggplot() +
 
 ## Visualising the Poisson process
 
+```{r PPr4, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 4', cache=TRUE}
+
+data4 <- simulate_pp(total_time,rate)
+
+ggplot() +
+  geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data4) +
+  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data4, Time > 0 & Time < total_time )) +
+  scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
+  scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("New arrival", expression(N(t)))) +
+  theme_bw() +
+  theme (text = element_text (size = 18))
+
+```
+
+## Visualising the Poisson process
+
 ```{r PPmean, echo=FALSE, fig.dpi=96*3, fig.cap='Process mean and realisations'}
 
-data_all <- bind_rows(data1,data2,data3,.id = "Realisation")
+data_all <- bind_rows(data1,data2,data3,data4,.id = "Realisation")
 data_mean <- data.frame(Time=c(0,total_time),Count=c(0,total_time*rate))
 
 allplot <- ggplot() +
-  geom_step(aes(x=Time,y=Count, colour = Realisation), data = data_all) +
+  geom_step(aes(x=Time,y=Count, group = Realisation, colour = "Realisation"), alpha = 0.75, data = data_all) +
   geom_line(aes(x=Time,y=Count, colour = "Mean value"), data = data_mean, linetype = 'solid', linewidth = 2) +
   scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
   scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
-  scale_colour_manual("", values = c("#CC6677","#AA4499","#882255","#117733"), labels = c(paste0(expression(N(t)), ', realisation 1'),paste0(expression(N(t)), ', realisation 2'),paste0(expression(N(t)), ', realisation 3'), paste0(expression(E[N(t)]), ', mean value'))) +
+  scale_colour_manual("", values = c("#117733","#CC6677"), labels = c(paste0("E[",expression(N(t)),"]"), expression(N(t)))) +
   theme_bw() +
   theme (text = element_text (size = 18))
 
@@ -279,6 +307,24 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
   theme_bw() + theme (text = element_text (size = 22), legend.position = 'none')
 
 ```
+
+
+# Activity
+
+## Tools of the day
+
+## The Poisson Distribution
+
+::: callout-note
+## Poisson random variable
+
+The random variable $X \in \mathbb{N}_0$ is Poisson distributed with rate $\lambda$ or
+
+$X \sim \mathcal{P}(\lambda)$ when $$
+\mathbb{P}(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}, \quad \forall k \in \mathbb{N}_0
+$$
+:::
+
 # History
 
 ## Siméon Denis Poisson
@@ -310,22 +356,6 @@ Poisson did not use or discover the Poisson process!
 -   Number of $\alpha$-particles detected by Geiger count (1910)
 
 -   Adopted quickly in: biology, ecology, engineering, physics
-
-# Activity
-
-## Tools of the day
-
-## The Poisson Distribution
-
-::: callout-note
-## Poisson random variable
-
-The random variable $X \in \mathbb{N}_0$ is Poisson distributed with rate $\lambda$ or
-
-$X \sim \mathcal{P}(\lambda)$ when $$
-\mathbb{P}(X = k) = \frac{\lambda^{k}e^{-\lambda}}{k!}, \quad \forall k \in \mathbb{N}_0
-$$
-:::
 
 # More
 
