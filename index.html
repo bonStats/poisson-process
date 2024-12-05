@@ -10,7 +10,7 @@
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <meta name="author" content="Joshua J Bon">
+  <meta name="author" content="Dr Joshua J Bon">
   <title>Poisson Processes</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -373,7 +373,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Joshua J Bon 
+Dr Joshua J Bon 
 </div>
 </div>
 </div>
@@ -389,10 +389,9 @@ Joshua J Bon
 <ul>
 <li class="fragment">Definition</li>
 <li class="fragment">Properties</li>
-<li class="fragment">History</li>
 <li class="fragment">Activity</li>
 </ul></li>
-<li class="fragment"><p>Recap and more</p></li>
+<li class="fragment"><p>Recap and extras</p></li>
 </ul>
 </div><div class="column" style="width:40%;">
 <div class="quarto-figure quarto-figure-right">
@@ -414,19 +413,33 @@ Joshua J Bon
 <li class="fragment"><p>Imagine you run a small coffee shop on Rundle Mall.</p></li>
 <li class="fragment"><p>Frequency of customer arrivals determines staffing.</p></li>
 </ul>
+<div class="fragment">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Coffee Shop Questions</strong></p>
+<p><strong>Coffee Shop Question 1</strong></p>
 </div>
 <div class="callout-content">
-<ul>
-<li class="fragment">What is the probability of exceeding 20 customers during the first hour after opening?</li>
-<li class="fragment">After one customer arrives, what is the average time until the next customer arrives?</li>
-</ul>
+<p>What is the probability of exceeding 20 customers during the first hour after opening?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Coffee Shop Question 2</strong></p>
+</div>
+<div class="callout-content">
+<p>After one customer arrives, what is the average time until the next customer arrives?</p>
+</div>
 </div>
 </div>
 </div>
@@ -455,8 +468,8 @@ Joshua J Bon
 <h1>Poisson processes</h1>
 
 </section>
-<section id="the-poisson-distribution" class="slide level2">
-<h2>The Poisson Distribution</h2>
+<section id="recall-the-poisson-distribution" class="slide level2">
+<h2>Recall: The Poisson Distribution</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -466,14 +479,18 @@ Joshua J Bon
 <p><strong>Definition: Poisson distribution</strong></p>
 </div>
 <div class="callout-content">
-<p>The random variable <span class="math inline">X \in \mathbb{N}_0</span> is called a Poisson random variable with rate <span class="math inline">\lambda &gt; 0</span> if</p>
+<p>The random variable <span class="math inline">X \in \mathbb{N}_0</span> is called a Poisson random variable</p>
+<p>with rate <span class="math inline">\lambda &gt; 0</span> if</p>
 <p><span class="math display">
 \mathbb{P}(X = k) = p_\lambda(k) =\frac{\lambda^{k}e^{-\lambda}}{k!}, \quad k \in \mathbb{N}_0.
 </span></p>
-<p>We also say <span class="math inline">X \sim \mathcal{P}(\lambda)</span> for short.</p>
+<p>We also say <span class="math inline">X \sim \text{Pois}(\lambda)</span> for short.</p>
 </div>
 </div>
 </div>
+<ul>
+<li class="fragment">If <span class="math inline">X \sim \text{Pois}(\lambda)</span>, then <span class="math inline">E[X]=\lambda</span></li>
+</ul>
 </section>
 <section id="the-poisson-process" class="slide level2">
 <h2>The Poisson process</h2>
@@ -516,6 +533,25 @@ Joshua J Bon
 <h2>Visualising the Poisson process</h2>
 
 <img data-src="index_files/figure-revealjs/PPmean-1.png" width="2880" class="r-stretch quarto-figure-center"><p class="caption">Process mean and realisations</p></section>
+<section id="properties-of-poisson-processes" class="slide level2">
+<h2>Properties of Poisson processes</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Property 1 (PPP1)</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math inline">N(t) \sim \text{Pois}(\lambda t)</span> for fixed <span class="math inline">t &gt; 0</span></p>
+</div>
+</div>
+</div>
+<ul>
+<li class="fragment">What about the expectation <span class="math inline">E[N(t)]</span>?</li>
+</ul>
+</section>
 <section id="visualising-the-poisson-process-5" class="slide level2">
 <h2>Visualising the Poisson process</h2>
 <div>
@@ -653,7 +689,7 @@ Joshua J Bon
 </div>
 <!--- Should I fill in the last property manually? --->
 </section>
-<section id="properties-of-poisson-processes" class="slide level2">
+<section id="properties-of-poisson-processes-1" class="slide level2">
 <h2>Properties of Poisson processes</h2>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -661,20 +697,7 @@ Joshua J Bon
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Property 1</strong></p>
-</div>
-<div class="callout-content">
-<p>For fixed <span class="math inline">t</span>, <span class="math inline">N(t) \sim \text{Pois}(\lambda t)</span></p>
-</div>
-</div>
-</div>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Property 2</strong></p>
+<p><strong>Property 2 (PPP2)</strong></p>
 </div>
 <div class="callout-content">
 <p><span class="math inline">\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)</span></p>
@@ -688,7 +711,7 @@ Joshua J Bon
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Property 3</strong></p>
+<p><strong>Property 3 (PPP3)</strong></p>
 </div>
 <div class="callout-content">
 <p>The interarrival times <span class="math inline">X_i \sim \text{Exp}(\lambda)</span>, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
@@ -713,7 +736,7 @@ Joshua J Bon
 <p><strong>Property 1</strong></p>
 </div>
 <div class="callout-content">
-<p>For fixed <span class="math inline">t</span>, <span class="math inline">N(t) \sim \text{Pois}(\lambda t)</span>.</p>
+<p><span class="math inline">N(t) \sim \text{Pois}(\lambda t)</span> for fixed <span class="math inline">t&gt;0</span>.</p>
 </div>
 </div>
 </div>
@@ -754,7 +777,24 @@ Joshua J Bon
 </section>
 <section id="extra-tools" class="slide level2">
 <h2>Extra tools</h2>
-<p>Exponential distribution property</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exponential distribution</strong></p>
+</div>
+<div class="callout-content">
+<p>The random variable <span class="math inline">X \in \mathbb{R}_{+}</span> is called an exponential random variable</p>
+<p>with rate <span class="math inline">\theta &gt; 0</span> if</p>
+<p><span class="math display">
+\mathbb{P}(X &gt; x) = p_\(k) =\frac{\lambda^{k}e^{-\lambda}}{k!}, \quad k \in \mathbb{N}_0.
+</span></p>
+<p>We also say <span class="math inline">X \sim \text{Pois}(\lambda)</span> for short.</p>
+</div>
+</div>
+</div>
 <p>Law of total probability</p>
 </section>
 <section id="proof-of-interarrival-times-property" class="slide level2">
@@ -848,8 +888,8 @@ Joshua J Bon
 <h1>More</h1>
 
 </section>
-<section id="lines-damned-lines-and-queuing-theory" class="slide level2">
-<h2>Lines, damned lines, and queuing theory</h2>
+<section id="lines-damned-lines-and-queuing" class="slide level2">
+<h2>Lines, damned lines, and queuing</h2>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>

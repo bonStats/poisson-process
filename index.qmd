@@ -1,7 +1,7 @@
 ---
 title: "Poisson Processes"
 subtitle: "Counting in continuous time"
-author: "Joshua J Bon"
+author: "Dr Joshua J Bon"
 bibliography: refs.bib
 format:
   revealjs:
@@ -40,10 +40,9 @@ figdpi <- 96*3
 
     -   Definition
     -   Properties
-    -   History
     -   Activity
 
--   Recap and more
+-   Recap and extras
 :::
 
 ::: {.column width="40%"}
@@ -59,11 +58,20 @@ figdpi <- 96*3
 
 -   Frequency of customer arrivals determines staffing.
 
+:::{.fragment}
 ::: callout-tip
-## Coffee Shop Questions
+## Coffee Shop Question 1
 
--   What is the probability of exceeding 20 customers during the first hour after opening?
--   After one customer arrives, what is the average time until the next customer arrives?
+What is the probability of exceeding 20 customers during the first hour after opening?
+:::
+:::
+
+:::{.fragment}
+::: callout-tip
+## Coffee Shop Question 2
+
+After one customer arrives, what is the average time until the next customer arrives?
+:::
 :::
 
 -   Not just coffee shops: Airports, call centres, any queues!
@@ -78,19 +86,23 @@ What is the probability of exceeding 20 customers during the first hour after op
 
 # Poisson processes
 
-## The Poisson Distribution
+## Recall: The Poisson Distribution
 
 ::: callout-note
 ## Definition: Poisson distribution
 
-The random variable $X \in \mathbb{N}_0$ is called a Poisson random variable with rate $\lambda > 0$ if
+The random variable $X \in \mathbb{N}_0$ is called a Poisson random variable
+
+with rate $\lambda > 0$ if
 
 $$
 \mathbb{P}(X = k) = p_\lambda(k) =\frac{\lambda^{k}e^{-\lambda}}{k!}, \quad k \in \mathbb{N}_0.
 $$
 
-We also say $X \sim \mathcal{P}(\lambda)$ for short.
+We also say $X \sim \text{Pois}(\lambda)$ for short.
 :::
+
+- If $X \sim \text{Pois}(\lambda)$, then $E[X]=\lambda$
 
 ## The Poisson process
 
@@ -213,6 +225,17 @@ allplot <- ggplot() +
 allplot
 
 ```
+
+## Properties of Poisson processes
+
+::: {.callout-tip}
+## Property 1 (PPP1)
+
+$N(t) \sim \text{Pois}(\lambda t)$ for fixed $t > 0$
+:::
+
+- What about the expectation $E[N(t)]$?
+
 
 ## Visualising the Poisson process
 
@@ -375,13 +398,7 @@ $X_{i} = T_{i} - T_{i-1}$, $T_0=0$
 ## Properties of Poisson processes
 
 ::: {.callout-tip}
-## Property 1
-
-For fixed $t$,  $N(t) \sim \text{Pois}(\lambda t)$
-:::
-
-::: {.callout-tip}
-## Property 2
+## Property 2 (PPP2)
 
 $\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)$ 
 
@@ -389,7 +406,7 @@ for $s_1 < s_1 + t_1 \leq s_2 < s_2 + t_2$, $t_1,t_2>0$ and $k_1,k_2 \in \mathbb
 :::
 
 ::: {.callout-tip}
-## Property 3
+## Property 3 (PPP3)
 
 The interarrival times $X_i \sim \text{Exp}(\lambda)$, for $i \in \{1,2,\ldots\}$
 :::
@@ -402,7 +419,7 @@ State which elements of the Poisson Process definition are required for each pro
 ::: {.callout-tip}
 ## Property 1
 
-For fixed $t$,  $N(t) \sim \text{Pois}(\lambda t)$.
+$N(t) \sim \text{Pois}(\lambda t)$ for fixed $t>0$.
 :::
 
 a. $N(0)=0$,
@@ -432,7 +449,19 @@ c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
 
 ## Extra tools
 
-Exponential distribution property
+::: callout-note
+## Exponential distribution
+
+The random variable $X \in \mathbb{R}_{+}$ is called an exponential random variable
+
+with rate $\theta > 0$ if
+
+$$
+\mathbb{P}(X > x) = p_\(k) =\frac{\lambda^{k}e^{-\lambda}}{k!}, \quad k \in \mathbb{N}_0.
+$$
+
+We also say $X \sim \text{Pois}(\lambda)$ for short.
+:::
 
 Law of total probability
 
