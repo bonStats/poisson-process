@@ -466,9 +466,6 @@ What is the probability of exceeding 20 customers during the first hour after op
 </div>
 </div>
 </div>
-<ul>
-<li class="fragment">If <span class="math inline">X \sim \text{Pois}(\lambda)</span>, then <span class="math inline">E[X]=\lambda</span></li>
-</ul>
 </section>
 <section id="the-poisson-process" class="slide level2">
 <h2>The Poisson process</h2>
@@ -498,16 +495,34 @@ What is the probability of exceeding 20 customers during the first hour after op
 <section id="visualising-the-poisson-process-1" class="slide level2">
 <h2>Visualising the Poisson process</h2>
 
+<!---
+## Visualising the Poisson process
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![Process realisation 3](index_files/figure-revealjs/PPr3-1.png){width=2880}
+:::
+:::
+
+
+
+## Visualising the Poisson process
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![Process realisation 4](index_files/figure-revealjs/PPr4-1.png){width=2880}
+:::
+:::
+
+
+
+--->
 <img data-src="index_files/figure-revealjs/PPr2-1.png" width="2880" class="r-stretch quarto-figure-center"><p class="caption">Process realisation 2</p></section>
 <section id="visualising-the-poisson-process-2" class="slide level2">
-<h2>Visualising the Poisson process</h2>
-
-<img data-src="index_files/figure-revealjs/PPr3-1.png" width="2880" class="r-stretch quarto-figure-center"><p class="caption">Process realisation 3</p></section>
-<section id="visualising-the-poisson-process-3" class="slide level2">
-<h2>Visualising the Poisson process</h2>
-
-<img data-src="index_files/figure-revealjs/PPr4-1.png" width="2880" class="r-stretch quarto-figure-center"><p class="caption">Process realisation 4</p></section>
-<section id="visualising-the-poisson-process-4" class="slide level2">
 <h2>Visualising the Poisson process</h2>
 
 <img data-src="index_files/figure-revealjs/PPmean-1.png" width="2880" class="r-stretch quarto-figure-center"><p class="caption">Process mean and realisations</p></section>
@@ -519,18 +534,50 @@ What is the probability of exceeding 20 customers during the first hour after op
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Property 1 (PPP1)</strong></p>
+<p><strong>Property 1 (PPP1): Marginal distribution</strong></p>
 </div>
 <div class="callout-content">
 <p><span class="math inline">N(t) \sim \text{Pois}(\lambda t)</span> for fixed <span class="math inline">t &gt; 0</span></p>
 </div>
 </div>
 </div>
-<ul>
-<li class="fragment">What about the expectation <span class="math inline">E[N(t)]</span>?</li>
-</ul>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Property 2 (PPP2): Marginal mean</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math inline">\mathbb{E}[N(t)] = \lambda t</span>, for fixed <span class="math inline">t \geq 0</span></p>
+</div>
+</div>
+</div>
 </section>
-<section id="visualising-the-poisson-process-5" class="slide level2">
+<section id="cafe-quiz" class="slide level2">
+<h2>Cafe Quiz</h2>
+<p>Q. Which elements of the Poisson Process definition are required to prove PPP1?</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Property 1</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math inline">N(t) \sim \text{Pois}(\lambda t)</span> for fixed <span class="math inline">t&gt;0</span>.</p>
+</div>
+</div>
+</div>
+<ol type="a">
+<li class="fragment"><span class="math inline">N(0)=0</span>,</li>
+<li class="fragment">Independent increments</li>
+<li class="fragment">Number of arrivals in <span class="math inline">[s,s+t]</span> is <span class="math inline">\text{Pois}(\lambda t)</span></li>
+</ol>
+</section>
+<section id="visualising-the-poisson-process-3" class="slide level2">
 <h2>Visualising the Poisson process</h2>
 <div>
 
@@ -557,7 +604,7 @@ What is the probability of exceeding 20 customers during the first hour after op
 </div>
 <p>Distribution at time t</p>
 </section>
-<section id="visualising-the-poisson-process-6" class="slide level2">
+<section id="visualising-the-poisson-process-4" class="slide level2">
 <h2>Visualising the Poisson process</h2>
 <div>
 
@@ -583,7 +630,7 @@ What is the probability of exceeding 20 customers during the first hour after op
 </div>
 </div>
 </section>
-<section id="visualising-the-poisson-process-7" class="slide level2">
+<section id="visualising-the-poisson-process-5" class="slide level2">
 <h2>Visualising the Poisson process</h2>
 <div>
 
@@ -609,7 +656,7 @@ What is the probability of exceeding 20 customers during the first hour after op
 </div>
 </div>
 </section>
-<section id="visualising-the-poisson-process-8" class="slide level2">
+<section id="visualising-the-poisson-process-6" class="slide level2">
 <h2>Visualising the Poisson process</h2>
 <div>
 
@@ -637,8 +684,7 @@ What is the probability of exceeding 20 customers during the first hour after op
 </section>
 <section id="arrival-times" class="slide level2">
 <h2>Arrival times</h2>
-
-<img data-src="index_files/figure-revealjs/diagram-1.png" width="960" class="r-stretch"><div class="callout callout-note callout-titled callout-style-default">
+<div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -662,13 +708,14 @@ What is the probability of exceeding 20 customers during the first hour after op
 </div>
 <div class="callout-content">
 <p><span class="math inline">X_{i} =</span> Time between <span class="math inline">(i-1)</span>th and <span class="math inline">i</span>th arrival, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
-<p><span class="math inline">X_{i} = T_{i} - T_{i-1}</span>, <span class="math inline">T_0=0</span></p>
+<p><span class="math inline">X_{i} = T_{i} - T_{i-1},\quad</span> <span class="math inline">T_0=0</span></p>
 </div>
 </div>
 </div>
 </div>
+
 <!--- Should I fill in the last property manually? --->
-</section>
+<img data-src="index_files/figure-revealjs/diagram-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="properties-of-poisson-processes-1" class="slide level2">
 <h2>Properties of Poisson processes</h2>
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -677,12 +724,15 @@ What is the probability of exceeding 20 customers during the first hour after op
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Property 2 (PPP2)</strong></p>
+<p><strong>Property 3 (PPP3): Conditional increment counts</strong></p>
 </div>
 <div class="callout-content">
+<p>If <span class="math inline">[s_2, s_2 + t_2]</span> and <span class="math inline">[s_1, s_1 + t_1]</span> are non-overlapping intervals then</p>
 <p><span class="math inline">\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)</span></p>
-<p>for <span class="math inline">s_1 &lt; s_1 + t_1 \leq s_2 &lt; s_2 + t_2</span>, <span class="math inline">t_1,t_2&gt;0</span> and <span class="math inline">k_1,k_2 \in \mathbb{N}_0</span>.</p>
-<p>Recall: <span class="math inline">p_{\lambda}(k)</span> is the Poisson PMF with rate <span class="math inline">\lambda</span> at <span class="math inline">k</span>.</p>
+<p>for <span class="math inline">k_1,k_2 \in \mathbb{N}_0</span>.</p>
+<ul>
+<li class="fragment">Recall: <span class="math inline">p_{\lambda}(k)</span> is the Poisson PMF with rate <span class="math inline">\lambda</span> at <span class="math inline">k</span>.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -693,7 +743,7 @@ What is the probability of exceeding 20 customers during the first hour after op
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Property 3 (PPP3)</strong></p>
+<p><strong>Property 4 (PPP4)</strong></p>
 </div>
 <div class="callout-content">
 <p>The interarrival times <span class="math inline">X_i \sim \text{Exp}(\lambda)</span>, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
@@ -701,61 +751,30 @@ What is the probability of exceeding 20 customers during the first hour after op
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="activity-1" class="title-slide slide level1 center">
-<h1>Activity 1</h1>
+<!---
 
-</section>
-<section id="local-quiz" class="slide level2">
-<h2>Local Quiz</h2>
-<p>Q1. Which elements of the Poisson Process definition are required to prove PPP1?</p>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Property 1</strong></p>
-</div>
-<div class="callout-content">
-<p><span class="math inline">N(t) \sim \text{Pois}(\lambda t)</span> for fixed <span class="math inline">t&gt;0</span>.</p>
-</div>
-</div>
-</div>
-<ol type="a">
-<li class="fragment"><span class="math inline">N(0)=0</span>,</li>
-<li class="fragment">Independent increments</li>
-<li class="fragment">Number of arrivals in <span class="math inline">[s,s+t]</span> is <span class="math inline">\text{Pois}(\lambda t)</span></li>
-</ol>
-</section>
-<section id="local-quiz-1" class="slide level2">
-<h2>Local Quiz</h2>
-<p>Q1. Which elements of the Poisson Process definition are required to prove PPP2?</p>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Property 2</strong></p>
-</div>
-<div class="callout-content">
-<p><span class="math inline">\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)</span></p>
-<p>for <span class="math inline">0\leq s_1 &lt; s_1 + t_1 \leq s_2 &lt; s_2 + t_2</span>, and <span class="math inline">k_1,k_2 \in \mathbb{N}_0</span>.</p>
-</div>
-</div>
-</div>
-<ol type="a">
-<li class="fragment"><span class="math inline">N(0)=0</span>,</li>
-<li class="fragment">Independent increments</li>
-<li class="fragment">Number of arrivals in <span class="math inline">[s,s+t]</span> is <span class="math inline">\text{Pois}(\lambda t)</span></li>
-</ol>
+## Local Quiz
+
+Q1. Which elements of the Poisson Process definition are required to prove PPP3?
+
+::: {.callout-tip}
+## Property 2
+
+$\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)$ 
+
+for $0\leq s_1 < s_1 + t_1 \leq s_2 < s_2 + t_2$, and $k_1,k_2 \in \mathbb{N}_0$.
+:::
+
+a. $N(0)=0$,
+b. Independent increments
+c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
+
+--->
 <!--- Discuss with partner. 1 a/c, 2 b/c --->
 </section></section>
 <section>
-<section id="demonstration-1" class="title-slide slide level1 center">
-<h1>Demonstration 1</h1>
+<section id="demonstration" class="title-slide slide level1 center">
+<h1>Demonstration</h1>
 
 </section>
 <section id="recall-important-tools" class="slide level2">
@@ -770,102 +789,115 @@ What is the probability of exceeding 20 customers during the first hour after op
 </div>
 <div class="callout-content">
 <p>The random variable <span class="math inline">X \in \mathbb{R}_{+}</span> is called an exponential random variable</p>
-<p>with rate <span class="math inline">\theta &gt; 0</span> if it has probability density function</p>
+<p>with rate <span class="math inline">\theta &gt; 0</span> if it has cumulative distribution function</p>
 <p><span class="math display">
-q_\theta(x) = \theta e^{-\theta x}, \quad x \in \mathbb{R}_{+}.
+\mathbb{P}(X\leq t) = 1- e^{-\theta t}, \quad t \in \mathbb{R}_{+}.
 </span></p>
 <p>We also say <span class="math inline">X \sim \text{Exp}(\theta)</span> for short.</p>
 </div>
 </div>
 </div>
-<div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Property 1 (EDP1)</strong></p>
-</div>
-<div class="callout-content">
-<p>For some random variable <span class="math inline">X\in \mathbb{R}_{+}</span>, if <span class="math inline">\mathbb{P}(X&gt;t) = e^{-\theta t}</span> for all <span class="math inline">t \geq 0</span></p>
-<p>then <span class="math inline">X \sim \text{Exp}(\theta)</span>.</p>
-</div>
-</div>
-</div>
-</div>
 </section>
 <section id="recall-important-tools-1" class="slide level2">
-<h2>Recall: important tools</h2>
+<h2>Recall: Important tools</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Theorem: Law of total probability</strong></p>
+<p><strong>Theorem: Law of total probability (LOTP)</strong></p>
 </div>
 <div class="callout-content">
 <p>For some event <span class="math inline">A</span>, and continuous random variable <span class="math inline">B \in \mathsf{B}</span></p>
-<p><span class="math display">\mathbb{P}(A) = \int_{\mathsf{B}} \mathbb{P}(A\mid B = b) f(b)\mathrm{d} b</span></p>
-<p>where f(b) is the probability density function of <span class="math inline">B</span> at <span class="math inline">b</span>.</p>
+<p><span class="math display">\mathbb{P}(A) = \int_{\mathsf{B}} \mathbb{P}(A\mid B = b) f_B(b)\mathrm{d} b</span></p>
+<p>where <span class="math inline">f_B(b)</span> is the probability density function of <span class="math inline">B</span> at <span class="math inline">b</span>.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="proof-of-interarrival-times-property" class="slide level2">
-<h2>Proof of interarrival times property</h2>
+<section id="interarrival-times-property" class="slide level2">
+<h2>Interarrival times property</h2>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Property 3</strong></p>
+<p><strong>Property 4</strong></p>
 </div>
 <div class="callout-content">
 <p>The interarrival times <span class="math inline">X_i \sim \text{Exp}(\lambda)</span>, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
 </div>
 </div>
 </div>
-<div class="fragment">
+<p>Proof strategy:</p>
+<ol type="1">
+<li class="fragment"><p><span class="math inline">\mathbb{P}(X_{i} &gt; t) = \int_{\mathsf{T}_{i-1}}\mathbb{P}(X_{i} &gt; t \mid T_{i-1}=s)f_{T_{i-1}}(s)\mathrm{d}s</span></p></li>
+<li class="fragment"><p><span class="math inline">\mathbb{P}(X_{i} &gt; t \mid T_{i-1}=s)</span></p></li>
+<li class="fragment"><p><span class="math inline">\mathbb{P}(X_{i} \leq t) = 1 - \mathbb{P}(X_{i} &gt; t)</span></p></li>
+</ol>
+</section>
+<section id="proof-of-interarrival-times-property" class="slide level2">
+<h2>Proof of interarrival times property</h2>
 <p>For times <span class="math inline">s,t &gt; 0</span> and arrival index <span class="math inline">i \in \{1,2,\ldots\}</span> consider</p>
-<p><span class="math display">\mathbb{P}(X_{i} &gt; t \mid T_{i-1} = s)</span></p>
+<p><span class="math inline">\mathbb{P}(X_{i} &gt; t \mid T_{i-1} = s)</span></p>
+<p><span class="math inline">= \mathbb{P}(T_{i} - T_{i-1}  &gt; t \mid T_{i-1} = s)</span></p>
+<p><span class="math inline">= \mathbb{P}(T_{i} &gt; s+t \mid T_{i-1} = s)</span></p>
+<div class="fragment" style="text-align: center; color: red">
+<p><span class="math inline">\Downarrow</span> <span class="math inline">0</span> arrivals in <span class="math inline">[s,s+t]</span> given <span class="math inline">i-1</span> arrivals in <span class="math inline">[0,s]</span></p>
 </div>
+<p><span class="math inline">= \mathbb{P}(N(s+t) - N(s) = 0  \mid N(s) - N(0) = i-1)</span></p>
+<div class="fragment" style="text-align: center; color: red">
+<p><span class="math inline">\Downarrow</span> PPP3: Conditional increment counts</p>
+</div>
+<p><span class="math inline">= p_{\lambda t}(0) = e^{-\lambda t}</span></p>
 </section>
 <section id="proof-of-interarrival-times-property-1" class="slide level2">
 <h2>Proof of interarrival times property</h2>
-<p><span class="math inline">\mathbb{P}(X_{i} &gt; t \mid T_{i-1} = s)</span></p>
-<div class="fragment">
-<p><span class="math inline">= \mathbb{P}(T_{i} - T_{i-1}  &gt; t \mid T_{i-1} = s)</span></p>
+<p>Now consider</p>
+<p><span class="math inline">\mathbb{P}(X_{i} \leq t)</span></p>
+<p><span class="math inline">=1-\mathbb{P}(X_{i} &gt; t)</span></p>
+<p><span class="math inline">= 1 - \int_{\mathsf{T}_{i-1}} \mathbb{P}(X_{i} &gt; t \mid T_{i-1}=s) f_{T_{i-1}}(s)\mathrm{d}s</span></p>
+<div class="fragment" style="text-align: center; color: red">
+<p><span class="math inline">\Downarrow</span> <span class="math inline">\mathbb{P}(X_{i} &gt; t \mid T_{i-1}=s) = e^{-\lambda t}</span></p>
 </div>
-<div class="fragment">
-<p><span class="math inline">= \mathbb{P}(T_{i} &gt; s+t \mid T_{i-1} = s)</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">= \mathbb{P}(N(s+t) - N(s) = 0  \mid N(s) - N(0) = i-1)</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">= p_{\lambda t}(0) = e^{-\lambda t}</span></p>
-</div>
-</section>
-<section id="proof-of-interarrival-times-property-2" class="slide level2">
-<h2>Proof of interarrival times property</h2>
-<p>Now consider <span class="math inline">\mathbb{P}(X_{i} &gt; t)</span></p>
-<div class="fragment">
-<p><span class="math inline">= \int_{\mathsf{T}_{i-1}}\mathbb{P}(X_{i} &gt; t \mid T_{i-1}=s)f(s)\mathrm{d}s</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">= \mathbb{E}[e^{-\lambda t}] = e^{-\lambda t}</span></p>
-</div>
+<p><span class="math inline">= 1 - e^{-\lambda t} \int_{\mathsf{T}_{i-1}} f_{T_{i-1}}(s)\mathrm{d}s</span></p>
+<p><span class="math inline">= 1- e^{-\lambda t}</span></p>
 <div class="fragment">
 <p>We can then recognise that <span class="math inline">X_i \sim \text{Exp}(\lambda)</span>.</p>
 </div>
 <!--- Property 2 --->
 </section>
-<section id="interarrival-times-strategy-review" class="slide level2">
-<h2>Interarrival times: Strategy review</h2>
+<section id="poissons-cafe-1" class="slide level2">
+<h2>Poisson’s Cafe</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Coffee Shop Question</strong></p>
+</div>
+<div class="callout-content">
+<p>After one customer arrives, what is the average time until the next customer arrives?</p>
+</div>
+</div>
+</div>
+<ul>
+<li class="fragment"><p>We have collected data that suggests the number of customers arriving is a Poisson process with rate <span class="math inline">\lambda = 10</span> per hour.</p></li>
+<li class="fragment"><p>The interarrival times are therefore <span class="math inline">X_i \sim \text{Exp}(10)</span>.</p></li>
+<li class="fragment"><p>The average time is therefore: <span class="math inline">E[X_i] = \frac{1}{10}</span></p>
+<ul>
+<li class="fragment">6 minutes.</li>
+</ul></li>
+</ul>
 </section></section>
+<section id="recap-and-questions" class="title-slide slide level1 center">
+<h1>Recap and Questions</h1>
+
+</section>
+
 <section>
 <section id="history" class="title-slide slide level1 center">
 <h1>History</h1>
@@ -898,15 +930,7 @@ q_\theta(x) = \theta e^{-\theta x}, \quad x \in \mathbb{R}_{+}.
 <li class="fragment"><p>Number of <span class="math inline">\alpha</span>-particles detected by Geiger count (1910)</p></li>
 <li class="fragment"><p>Adopted quickly in: biology, ecology, engineering, physics</p></li>
 </ul>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>See <span class="citation" data-cites="stirzaker2000advice">Stirzaker (<a href="#/references" role="doc-biblioref" onclick="">2000</a>)</span> for more details</p></li></ol></aside></section></section>
-<section>
-<section id="more" class="title-slide slide level1 center">
-<h1>More</h1>
-
-</section>
-<section id="lines-damned-lines-and-queuing" class="slide level2">
-<h2>Lines, damned lines, and queuing</h2>
-</section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>See <span class="citation" data-cites="stirzaker2000advice">Stirzaker (<a href="#/references" role="doc-biblioref" onclick="">2000</a>)</span> for more details</p></li></ol></aside></section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">

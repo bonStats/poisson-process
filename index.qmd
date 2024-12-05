@@ -96,8 +96,6 @@ $$
 We also say $X \sim \text{Pois}(\lambda)$ for short.
 :::
 
-- If $X \sim \text{Pois}(\lambda)$, then $E[X]=\lambda$
-
 ## The Poisson process
 
 ::: callout-note
@@ -137,13 +135,16 @@ rate <- 1
 ylimits <- c(0,15)
 
 data1 <- simulate_pp(total_time,rate)
+data2 <- simulate_pp(total_time,rate)
+data4 <- simulate_pp(total_time,rate)
+data3 <- simulate_pp(total_time,rate)
 
 ggplot() +
   geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data1) +
-  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data1, Time > 0 & Time < total_time )) +
+  geom_point(aes(x=Time,y=Count, colour = "Arrival time"), data = filter(data1, Time > 0 & Time < total_time )) +
   scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
   scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
-  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("New arrival", expression(N(t)))) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("Arrival time", expression(N(t)))) +
   theme_bw() +
   theme (text = element_text (size = 18))
 
@@ -151,33 +152,32 @@ ggplot() +
 
 ## Visualising the Poisson process
 
-```{r PPr2, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 2', cache=TRUE}
+```{r PPr2, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 2', cache=TRUE, }
 
-data2 <- simulate_pp(total_time,rate)
 
 ggplot() +
   geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data2) +
-  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data2, Time > 0 & Time < total_time )) +
+  geom_point(aes(x=Time,y=Count, colour = "Arrival time"), data = filter(data2, Time > 0 & Time < total_time )) +
   scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
   scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
-  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("New arrival", expression(N(t)))) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("Arrival time", expression(N(t)))) +
   theme_bw() +
   theme (text = element_text (size = 18))
 
 ```
 
+<!---
 ## Visualising the Poisson process
 
 ```{r PPr3, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 3', cache=TRUE}
 
-data3 <- simulate_pp(total_time,rate)
 
 ggplot() +
   geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data3) +
-  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data3, Time > 0 & Time < total_time )) +
+  geom_point(aes(x=Time,y=Count, colour = "Arrival time"), data = filter(data3, Time > 0 & Time < total_time )) +
   scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
   scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
-  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("New arrival", expression(N(t)))) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("Arrival time", expression(N(t)))) +
   theme_bw() +
   theme (text = element_text (size = 18))
 
@@ -187,18 +187,20 @@ ggplot() +
 
 ```{r PPr4, echo=FALSE, fig.dpi=96*3, fig.cap='Process realisation 4', cache=TRUE}
 
-data4 <- simulate_pp(total_time,rate)
+
 
 ggplot() +
   geom_step(aes(x=Time,y=Count, colour = "Process value"), data = data4) +
-  geom_point(aes(x=Time,y=Count, colour = "New arrival"), data = filter(data4, Time > 0 & Time < total_time )) +
+  geom_point(aes(x=Time,y=Count, colour = "Arrival time"), data = filter(data4, Time > 0 & Time < total_time )) +
   scale_y_continuous(xxtitle, breaks = breaks_pretty(), limits = ylimits) +
   scale_x_continuous(yytitle, breaks = breaks_pretty(), limits = c(0,10)) +
-  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("New arrival", expression(N(t)))) +
+  scale_colour_manual ("", values = c("#E66100","#5D3A9B"), label = c("Arrival time", expression(N(t)))) +
   theme_bw() +
   theme (text = element_text (size = 18))
 
 ```
+
+--->
 
 ## Visualising the Poisson process
 
@@ -223,12 +225,31 @@ allplot
 ## Properties of Poisson processes
 
 ::: {.callout-tip}
-## Property 1 (PPP1)
+## Property 1 (PPP1): Marginal distribution
 
 $N(t) \sim \text{Pois}(\lambda t)$ for fixed $t > 0$
 :::
 
-- What about the expectation $E[N(t)]$?
+::: {.callout-tip}
+## Property 2 (PPP2): Marginal mean
+
+$\mathbb{E}[N(t)] = \lambda t$, for fixed $t \geq 0$
+:::
+
+
+## Cafe Quiz
+
+Q. Which elements of the Poisson Process definition are required to prove PPP1?
+
+::: {.callout-tip}
+## Property 1
+
+$N(t) \sim \text{Pois}(\lambda t)$ for fixed $t>0$.
+:::
+
+a. $N(0)=0$,
+b. Independent increments
+c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
 
 
 ## Visualising the Poisson process
@@ -346,7 +367,24 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
 
 ## Arrival times
 
-```{r diagram, engine = 'tikz'}
+::: {.callout-note}
+## Definition: Arrival time
+
+$T_i =$ Time of $i$th arrival, for $i \in \{1,2,\ldots\}$
+
+:::
+
+::: {.fragment}
+::: {.callout-note}
+## Definition: Interarrival time
+
+$X_{i} =$ Time between $(i-1)$th and $i$th arrival, for $i \in \{1,2,\ldots\}$
+
+$X_{i} = T_{i} - T_{i-1},\quad$ $T_0=0$
+:::
+:::
+
+```{r diagram, engine = 'tikz', fig.align='center'}
 \begin{tikzpicture}
 
 \draw[->] (0.5,0) -- (7,0) node[right] {Time};
@@ -372,64 +410,35 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
 \end{tikzpicture}
 ```
 
-::: {.callout-note}
-## Definition: Arrival time
-
-$T_i =$ Time of $i$th arrival, for $i \in \{1,2,\ldots\}$
-
-:::
-
-::: {.fragment}
-::: {.callout-note}
-## Definition: Interarrival time
-
-$X_{i} =$ Time between $(i-1)$th and $i$th arrival, for $i \in \{1,2,\ldots\}$
-
-$X_{i} = T_{i} - T_{i-1}$, $T_0=0$
-:::
-:::
-
 <!--- Should I fill in the last property manually? --->
 
 ## Properties of Poisson processes
 
 ::: {.callout-tip}
-## Property 2 (PPP2)
+## Property 3 (PPP3): Conditional increment counts
+If $[s_2, s_2 + t_2]$ and $[s_1, s_1 + t_1]$ are non-overlapping intervals then
 
 $\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)$ 
 
-for $s_1 < s_1 + t_1 \leq s_2 < s_2 + t_2$, $t_1,t_2>0$ and $k_1,k_2 \in \mathbb{N}_0$.
+for $k_1,k_2 \in \mathbb{N}_0$.
 
-Recall: $p_{\lambda}(k)$ is the Poisson PMF with rate $\lambda$ at $k$.
+- Recall: $p_{\lambda}(k)$ is the Poisson PMF with rate $\lambda$ at $k$.
+
 :::
 
 ::: {.fragment}
 ::: {.callout-tip}
-## Property 3 (PPP3)
+## Property 4 (PPP4)
 
 The interarrival times $X_i \sim \text{Exp}(\lambda)$, for $i \in \{1,2,\ldots\}$
 :::
 :::
 
-# Activity 1
+<!---
 
 ## Local Quiz
 
-Q1. Which elements of the Poisson Process definition are required to prove PPP1?
-
-::: {.callout-tip}
-## Property 1
-
-$N(t) \sim \text{Pois}(\lambda t)$ for fixed $t>0$.
-:::
-
-a. $N(0)=0$,
-b. Independent increments
-c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
-
-## Local Quiz
-
-Q1. Which elements of the Poisson Process definition are required to prove PPP2?
+Q1. Which elements of the Poisson Process definition are required to prove PPP3?
 
 ::: {.callout-tip}
 ## Property 2
@@ -442,11 +451,13 @@ for $0\leq s_1 < s_1 + t_1 \leq s_2 < s_2 + t_2$, and $k_1,k_2 \in \mathbb{N}_0$
 a. $N(0)=0$,
 b. Independent increments
 c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
+
+--->
   
 <!--- Discuss with partner. 1 a/c, 2 b/c --->
 
 
-# Demonstration 1
+# Demonstration
 
 ## Recall: Important tools
 
@@ -455,83 +466,85 @@ c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
 
 The random variable $X \in \mathbb{R}_{+}$ is called an exponential random variable
 
-with rate $\theta > 0$ if it has probability density function
+with rate $\theta > 0$ if it has cumulative distribution function
 
 $$
-q_\theta(x) = \theta e^{-\theta x}, \quad x \in \mathbb{R}_{+}.
+\mathbb{P}(X\leq t) = 1- e^{-\theta t}, \quad t \in \mathbb{R}_{+}.
 $$
 
 We also say $X \sim \text{Exp}(\theta)$ for short.
 :::
 
-::: {.fragment}
-::: {.callout-tip}
-## Property 1 (EDP1)
-For some random variable $X\in \mathbb{R}_{+}$, if $\mathbb{P}(X>t) = e^{-\theta t}$ for all $t \geq 0$ 
 
-then $X \sim \text{Exp}(\theta)$.
-:::
-:::
-
-## Recall: important tools
+## Recall: Important tools
 
 ::: callout-note
-## Theorem: Law of total probability
+## Theorem: Law of total probability (LOTP)
 For some event $A$, and continuous random variable $B \in \mathsf{B}$
 
-$$\mathbb{P}(A) = \int_{\mathsf{B}} \mathbb{P}(A\mid B = b) f(b)\mathrm{d} b$$
+$$\mathbb{P}(A) = \int_{\mathsf{B}} \mathbb{P}(A\mid B = b) f_B(b)\mathrm{d} b$$
 
-where f(b) is the probability density function of $B$ at $b$.
+where $f_B(b)$ is the probability density function of $B$ at $b$.
 :::
 
-## Proof of interarrival times property
+## Interarrival times property
 
 ::: {.callout-tip}
-## Property 3
+## Property 4
 
 The interarrival times $X_i \sim \text{Exp}(\lambda)$, for $i \in \{1,2,\ldots\}$
 :::
 
-::: {.fragment}
+Proof strategy:
+
+1. $\mathbb{P}(X_{i} > t) = \int_{\mathsf{T}_{i-1}}\mathbb{P}(X_{i} > t \mid T_{i-1}=s)f_{T_{i-1}}(s)\mathrm{d}s$
+  
+2. $\mathbb{P}(X_{i} > t \mid T_{i-1}=s)$
+
+3. $\mathbb{P}(X_{i} \leq t) = 1 - \mathbb{P}(X_{i} > t)$
+
+## Proof of interarrival times property
 
 For times $s,t > 0$ and arrival index $i \in \{1,2,\ldots\}$ consider 
 
-$$\mathbb{P}(X_{i} > t \mid T_{i-1} = s)$$
-:::
-
-
-## Proof of interarrival times property
-
 $\mathbb{P}(X_{i} > t \mid T_{i-1} = s)$
 
-
-::: {.fragment}
 $= \mathbb{P}(T_{i} - T_{i-1}  > t \mid T_{i-1} = s)$
-:::
 
-::: {.fragment}
 $= \mathbb{P}(T_{i} > s+t \mid T_{i-1} = s)$
+
+::: {.fragment style="text-align: center; color: red"}
+$\Downarrow$ $0$ arrivals in $[s,s+t]$ given $i-1$ arrivals in $[0,s]$
 :::
 
-::: {.fragment}
 $= \mathbb{P}(N(s+t) - N(s) = 0  \mid N(s) - N(0) = i-1)$
+
+::: {.fragment style="text-align: center; color: red"}
+$\Downarrow$ PPP3: Conditional increment counts
 :::
 
-::: {.fragment}
 $= p_{\lambda t}(0) = e^{-\lambda t}$
-:::
+
+
 
 ## Proof of interarrival times property
 
-Now consider $\mathbb{P}(X_{i} > t)$
+Now consider 
 
-::: {.fragment}
-$= \int_{\mathsf{T}_{i-1}}\mathbb{P}(X_{i} > t \mid T_{i-1}=s)f(s)\mathrm{d}s$
+$\mathbb{P}(X_{i} \leq t)$
+
+$=1-\mathbb{P}(X_{i} > t)$
+
+$= 1 - \int_{\mathsf{T}_{i-1}} \mathbb{P}(X_{i} > t \mid T_{i-1}=s) f_{T_{i-1}}(s)\mathrm{d}s$
+
+::: {.fragment style="text-align: center; color: red"}
+$\Downarrow$ $\mathbb{P}(X_{i} > t \mid T_{i-1}=s) = e^{-\lambda t}$
 :::
 
-::: {.fragment}
-$= \mathbb{E}[e^{-\lambda t}] = e^{-\lambda t}$
-:::
+$= 1 - e^{-\lambda t} \int_{\mathsf{T}_{i-1}} f_{T_{i-1}}(s)\mathrm{d}s$
+
+$= 1- e^{-\lambda t}$
+
 
 ::: {.fragment}
 We can then recognise that $X_i \sim \text{Exp}(\lambda)$.
@@ -539,9 +552,22 @@ We can then recognise that $X_i \sim \text{Exp}(\lambda)$.
 
 <!--- Property 2 --->
 
-## Interarrival times: Strategy review
+## Poisson's Cafe
 
+::: callout-tip
+## Coffee Shop Question
 
+After one customer arrives, what is the average time until the next customer arrives?
+:::
+
+- We have collected data that suggests the number of customers arriving is a Poisson process with rate $\lambda = 10$ per hour.
+
+- The interarrival times are therefore $X_i \sim \text{Exp}(10)$.
+
+- The average time is therefore: $E[X_i] = \frac{1}{10}$
+  - 6 minutes.
+
+# Recap and Questions
 
 # History
 
@@ -575,9 +601,6 @@ Poisson did not use or discover the Poisson process!
 
 -   Adopted quickly in: biology, ecology, engineering, physics
 
-# More
-
-## Lines, damned lines, and queuing
 
 ## References
 
