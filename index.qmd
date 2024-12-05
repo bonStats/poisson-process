@@ -60,15 +60,7 @@ figdpi <- 96*3
 
 :::{.fragment}
 ::: callout-tip
-## Coffee Shop Question 1
-
-What is the probability of exceeding 20 customers during the first hour after opening?
-:::
-:::
-
-:::{.fragment}
-::: callout-tip
-## Coffee Shop Question 2
+## Coffee Shop Question
 
 After one customer arrives, what is the average time until the next customer arrives?
 :::
@@ -76,13 +68,15 @@ After one customer arrives, what is the average time until the next customer arr
 
 -   Not just coffee shops: Airports, call centres, any queues!
 
-## 
+<!--- ## 
 
 ::: callout-tip
 ## Coffee Shop Q1
 
 What is the probability of exceeding 20 customers during the first hour after opening?
 :::
+
+--->
 
 # Poisson processes
 
@@ -379,18 +373,20 @@ ggplot(parse_dist(distr)) + stat_histinterval(aes(dist = .dist_obj, slab_colour 
 ```
 
 ::: {.callout-note}
-## Arrival time
+## Definition: Arrival time
 
 $T_i =$ Time of $i$th arrival, for $i \in \{1,2,\ldots\}$
 
 :::
 
+::: {.fragment}
 ::: {.callout-note}
-## Interarrival time
+## Definition: Interarrival time
 
 $X_{i} =$ Time between $(i-1)$th and $i$th arrival, for $i \in \{1,2,\ldots\}$
 
 $X_{i} = T_{i} - T_{i-1}$, $T_0=0$
+:::
 :::
 
 <!--- Should I fill in the last property manually? --->
@@ -403,18 +399,23 @@ $X_{i} = T_{i} - T_{i-1}$, $T_0=0$
 $\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)$ 
 
 for $s_1 < s_1 + t_1 \leq s_2 < s_2 + t_2$, $t_1,t_2>0$ and $k_1,k_2 \in \mathbb{N}_0$.
+
+Recall: $p_{\lambda}(k)$ is the Poisson PMF with rate $\lambda$ at $k$.
 :::
 
+::: {.fragment}
 ::: {.callout-tip}
 ## Property 3 (PPP3)
 
 The interarrival times $X_i \sim \text{Exp}(\lambda)$, for $i \in \{1,2,\ldots\}$
 :::
+:::
+
 # Activity 1
 
-## Quiz
+## Local Quiz
 
-State which elements of the Poisson Process definition are required for each property:
+Q1. Which elements of the Poisson Process definition are required to prove PPP1?
 
 ::: {.callout-tip}
 ## Property 1
@@ -426,9 +427,9 @@ a. $N(0)=0$,
 b. Independent increments
 c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
 
-## Quiz
+## Local Quiz
 
-State which elements of the Poisson Process definition are required for each property:
+Q1. Which elements of the Poisson Process definition are required to prove PPP2?
 
 ::: {.callout-tip}
 ## Property 2
@@ -447,23 +448,41 @@ c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
 
 # Demonstration 1
 
-## Extra tools
+## Recall: Important tools
 
 ::: callout-note
-## Exponential distribution
+## Definition: Exponential distribution
 
 The random variable $X \in \mathbb{R}_{+}$ is called an exponential random variable
 
-with rate $\theta > 0$ if
+with rate $\theta > 0$ if it has probability density function
 
 $$
-\mathbb{P}(X > x) = p_\(k) =\frac{\lambda^{k}e^{-\lambda}}{k!}, \quad k \in \mathbb{N}_0.
+q_\theta(x) = \theta e^{-\theta x}, \quad x \in \mathbb{R}_{+}.
 $$
 
-We also say $X \sim \text{Pois}(\lambda)$ for short.
+We also say $X \sim \text{Exp}(\theta)$ for short.
 :::
 
-Law of total probability
+::: {.fragment}
+::: {.callout-tip}
+## Property 1 (EDP1)
+For some random variable $X\in \mathbb{R}_{+}$, if $\mathbb{P}(X>t) = e^{-\theta t}$ for all $t \geq 0$ 
+
+then $X \sim \text{Exp}(\theta)$.
+:::
+:::
+
+## Recall: important tools
+
+::: callout-note
+## Theorem: Law of total probability
+For some event $A$, and continuous random variable $B \in \mathsf{B}$
+
+$$\mathbb{P}(A) = \int_{\mathsf{B}} \mathbb{P}(A\mid B = b) f(b)\mathrm{d} b$$
+
+where f(b) is the probability density function of $B$ at $b$.
+:::
 
 ## Proof of interarrival times property
 
@@ -507,7 +526,7 @@ $= p_{\lambda t}(0) = e^{-\lambda t}$
 Now consider $\mathbb{P}(X_{i} > t)$
 
 ::: {.fragment}
-$= \mathbb{E}[\mathbb{P}(X_{i} > t \mid T_{i-1}=S)]$
+$= \int_{\mathsf{T}_{i-1}}\mathbb{P}(X_{i} > t \mid T_{i-1}=s)f(s)\mathrm{d}s$
 :::
 
 ::: {.fragment}

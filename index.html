@@ -420,22 +420,7 @@ Dr Joshua J Bon
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Coffee Shop Question 1</strong></p>
-</div>
-<div class="callout-content">
-<p>What is the probability of exceeding 20 customers during the first hour after opening?</p>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Coffee Shop Question 2</strong></p>
+<p><strong>Coffee Shop Question</strong></p>
 </div>
 <div class="callout-content">
 <p>After one customer arrives, what is the average time until the next customer arrives?</p>
@@ -446,22 +431,15 @@ Dr Joshua J Bon
 <ul>
 <li class="fragment">Not just coffee shops: Airports, call centres, any queues!</li>
 </ul>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Coffee Shop Q1</strong></p>
-</div>
-<div class="callout-content">
-<p>What is the probability of exceeding 20 customers during the first hour after opening?</p>
-</div>
-</div>
-</div>
+<!--- ## 
+
+::: callout-tip
+## Coffee Shop Q1
+
+What is the probability of exceeding 20 customers during the first hour after opening?
+:::
+
+--->
 </section></section>
 <section>
 <section id="poisson-processes" class="title-slide slide level1 center">
@@ -666,24 +644,26 @@ Dr Joshua J Bon
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Arrival time</strong></p>
+<p><strong>Definition: Arrival time</strong></p>
 </div>
 <div class="callout-content">
 <p><span class="math inline">T_i =</span> Time of <span class="math inline">i</span>th arrival, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
 </div>
 </div>
 </div>
+<div class="fragment">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Interarrival time</strong></p>
+<p><strong>Definition: Interarrival time</strong></p>
 </div>
 <div class="callout-content">
 <p><span class="math inline">X_{i} =</span> Time between <span class="math inline">(i-1)</span>th and <span class="math inline">i</span>th arrival, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
 <p><span class="math inline">X_{i} = T_{i} - T_{i-1}</span>, <span class="math inline">T_0=0</span></p>
+</div>
 </div>
 </div>
 </div>
@@ -702,9 +682,11 @@ Dr Joshua J Bon
 <div class="callout-content">
 <p><span class="math inline">\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)</span></p>
 <p>for <span class="math inline">s_1 &lt; s_1 + t_1 \leq s_2 &lt; s_2 + t_2</span>, <span class="math inline">t_1,t_2&gt;0</span> and <span class="math inline">k_1,k_2 \in \mathbb{N}_0</span>.</p>
+<p>Recall: <span class="math inline">p_{\lambda}(k)</span> is the Poisson PMF with rate <span class="math inline">\lambda</span> at <span class="math inline">k</span>.</p>
 </div>
 </div>
 </div>
+<div class="fragment">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -718,15 +700,16 @@ Dr Joshua J Bon
 </div>
 </div>
 </div>
+</div>
 </section></section>
 <section>
 <section id="activity-1" class="title-slide slide level1 center">
 <h1>Activity 1</h1>
 
 </section>
-<section id="quiz" class="slide level2">
-<h2>Quiz</h2>
-<p>State which elements of the Poisson Process definition are required for each property:</p>
+<section id="local-quiz" class="slide level2">
+<h2>Local Quiz</h2>
+<p>Q1. Which elements of the Poisson Process definition are required to prove PPP1?</p>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -746,9 +729,9 @@ Dr Joshua J Bon
 <li class="fragment">Number of arrivals in <span class="math inline">[s,s+t]</span> is <span class="math inline">\text{Pois}(\lambda t)</span></li>
 </ol>
 </section>
-<section id="quiz-1" class="slide level2">
-<h2>Quiz</h2>
-<p>State which elements of the Poisson Process definition are required for each property:</p>
+<section id="local-quiz-1" class="slide level2">
+<h2>Local Quiz</h2>
+<p>Q1. Which elements of the Poisson Process definition are required to prove PPP2?</p>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -775,27 +758,60 @@ Dr Joshua J Bon
 <h1>Demonstration 1</h1>
 
 </section>
-<section id="extra-tools" class="slide level2">
-<h2>Extra tools</h2>
+<section id="recall-important-tools" class="slide level2">
+<h2>Recall: Important tools</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Exponential distribution</strong></p>
+<p><strong>Definition: Exponential distribution</strong></p>
 </div>
 <div class="callout-content">
 <p>The random variable <span class="math inline">X \in \mathbb{R}_{+}</span> is called an exponential random variable</p>
-<p>with rate <span class="math inline">\theta &gt; 0</span> if</p>
+<p>with rate <span class="math inline">\theta &gt; 0</span> if it has probability density function</p>
 <p><span class="math display">
-\mathbb{P}(X &gt; x) = p_\(k) =\frac{\lambda^{k}e^{-\lambda}}{k!}, \quad k \in \mathbb{N}_0.
+q_\theta(x) = \theta e^{-\theta x}, \quad x \in \mathbb{R}_{+}.
 </span></p>
-<p>We also say <span class="math inline">X \sim \text{Pois}(\lambda)</span> for short.</p>
+<p>We also say <span class="math inline">X \sim \text{Exp}(\theta)</span> for short.</p>
 </div>
 </div>
 </div>
-<p>Law of total probability</p>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Property 1 (EDP1)</strong></p>
+</div>
+<div class="callout-content">
+<p>For some random variable <span class="math inline">X\in \mathbb{R}_{+}</span>, if <span class="math inline">\mathbb{P}(X&gt;t) = e^{-\theta t}</span> for all <span class="math inline">t \geq 0</span></p>
+<p>then <span class="math inline">X \sim \text{Exp}(\theta)</span>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recall-important-tools-1" class="slide level2">
+<h2>Recall: important tools</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Theorem: Law of total probability</strong></p>
+</div>
+<div class="callout-content">
+<p>For some event <span class="math inline">A</span>, and continuous random variable <span class="math inline">B \in \mathsf{B}</span></p>
+<p><span class="math display">\mathbb{P}(A) = \int_{\mathsf{B}} \mathbb{P}(A\mid B = b) f(b)\mathrm{d} b</span></p>
+<p>where f(b) is the probability density function of <span class="math inline">B</span> at <span class="math inline">b</span>.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="proof-of-interarrival-times-property" class="slide level2">
 <h2>Proof of interarrival times property</h2>
@@ -837,7 +853,7 @@ Dr Joshua J Bon
 <h2>Proof of interarrival times property</h2>
 <p>Now consider <span class="math inline">\mathbb{P}(X_{i} &gt; t)</span></p>
 <div class="fragment">
-<p><span class="math inline">= \mathbb{E}[\mathbb{P}(X_{i} &gt; t \mid T_{i-1}=S)]</span></p>
+<p><span class="math inline">= \int_{\mathsf{T}_{i-1}}\mathbb{P}(X_{i} &gt; t \mid T_{i-1}=s)f(s)\mathrm{d}s</span></p>
 </div>
 <div class="fragment">
 <p><span class="math inline">= \mathbb{E}[e^{-\lambda t}] = e^{-\lambda t}</span></p>
