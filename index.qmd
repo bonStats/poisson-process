@@ -5,7 +5,7 @@ author: "Joshua J Bon"
 bibliography: refs.bib
 format:
   revealjs:
-    html-math-method: mathjax 
+    html-math-method: katex
     theme: default
     df-print: paged
     incremental: true 
@@ -370,7 +370,7 @@ $X_{i} =$ Time between $(i-1)$th and $i$th arrival, for $i \in \{1,2,\ldots\}$
 $X_{i} = T_{i} - T_{i-1}$, $T_0=0$
 :::
 
-[]: Should I fill in the last property manually?
+<!--- Should I fill in the last property manually? --->
 
 ## Properties of Poisson processes
 
@@ -425,7 +425,7 @@ a. $N(0)=0$,
 b. Independent increments
 c. Number of arrivals in $[s,s+t]$ is $\text{Pois}(\lambda t)$
   
-[]: Discuss with partner. 1 a/c, 2 b/c
+<!--- Discuss with partner. 1 a/c, 2 b/c --->
 
 
 # Demonstration 1
@@ -436,66 +436,60 @@ Exponential distribution property
 
 Law of total probability
 
-## Proof of interarrival times property {.scrollable}
+## Proof of interarrival times property
 
 ::: {.callout-tip}
 ## Property 3
 
-The interarrival times $X_k \sim \text{Exp}(\lambda)$, for $k \in \{1,2,\ldots\}$
+The interarrival times $X_i \sim \text{Exp}(\lambda)$, for $i \in \{1,2,\ldots\}$
 :::
 
 ::: {.fragment}
 
-For times $0 < s \leq t$ and arrival index $i \in \{1,2,\ldots\}$ consider 
+For times $s,t > 0$ and arrival index $i \in \{1,2,\ldots\}$ consider 
+
+$$\mathbb{P}(X_{i} > t \mid T_{i-1} = s)$$
+:::
+
+
+## Proof of interarrival times property
 
 $\mathbb{P}(X_{i} > t \mid T_{i-1} = s)$
-:::
+
 
 ::: {.fragment}
 $= \mathbb{P}(T_{i} - T_{i-1}  > t \mid T_{i-1} = s)$
 :::
 
-$$~$$
-
 ::: {.fragment}
 $= \mathbb{P}(T_{i} > s+t \mid T_{i-1} = s)$
 :::
-
-$$~$$
-
-::: {.fragment}
-$= \mathbb{P}(N(s+t) = N(s) \mid N(s) = i-1)$
-:::
-
-$$~$$
 
 ::: {.fragment}
 $= \mathbb{P}(N(s+t) - N(s) = 0  \mid N(s) - N(0) = i-1)$
 :::
 
-$$~$$
-
 ::: {.fragment}
 $= p_{\lambda t}(0) = e^{-\lambda t}$
 :::
 
-$$~$$
+## Proof of interarrival times property
 
-::: {.fragment}
 Now consider $\mathbb{P}(X_{i} > t)$
+
+::: {.fragment}
+$= \mathbb{E}[\mathbb{P}(X_{i} > t \mid T_{i-1}=S)]$
 :::
 
 ::: {.fragment}
-$= \mathbb{E}_{S}[\mathbb{P}(X_{i} > t \mid T_{i-1}=S)] = e^{-\lambda t}$
+$= \mathbb{E}[e^{-\lambda t}] = e^{-\lambda t}$
 :::
-
-$$~$$
 
 ::: {.fragment}
 We can then recognise that $X_i \sim \text{Exp}(\lambda)$.
 :::
 
-[]: Property 2
+<!--- Property 2 --->
 
 ## Interarrival times: Strategy review
 
@@ -535,7 +529,7 @@ Poisson did not use or discover the Poisson process!
 
 # More
 
-## Lines, damned lines, and queuing theory
+## Lines, damned lines, and queuing
 
 ## References
 

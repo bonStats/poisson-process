@@ -52,6 +52,22 @@
     }  </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="style.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -450,11 +466,11 @@ Joshua J Bon
 <p><strong>Definition: Poisson distribution</strong></p>
 </div>
 <div class="callout-content">
-<p>The random variable <span class="math inline">\(X \in \mathbb{N}_0\)</span> is called a Poisson random variable with rate <span class="math inline">\(\lambda &gt; 0\)</span> if</p>
-<p><span class="math display">\[
+<p>The random variable <span class="math inline">X \in \mathbb{N}_0</span> is called a Poisson random variable with rate <span class="math inline">\lambda &gt; 0</span> if</p>
+<p><span class="math display">
 \mathbb{P}(X = k) = p_\lambda(k) =\frac{\lambda^{k}e^{-\lambda}}{k!}, \quad k \in \mathbb{N}_0.
-\]</span></p>
-<p>We also say <span class="math inline">\(X \sim \mathcal{P}(\lambda)\)</span> for short.</p>
+</span></p>
+<p>We also say <span class="math inline">X \sim \mathcal{P}(\lambda)</span> for short.</p>
 </div>
 </div>
 </div>
@@ -470,11 +486,11 @@ Joshua J Bon
 <p><strong>Definition: Poisson process</strong></p>
 </div>
 <div class="callout-content">
-<p>The counting process <span class="math inline">\(\{N(t), t \in [0,\infty)\}\)</span> is called a Poisson Process with rate <span class="math inline">\(\lambda &gt; 0\)</span> if</p>
+<p>The counting process <span class="math inline">\{N(t), t \in [0,\infty)\}</span> is called a Poisson Process with rate <span class="math inline">\lambda &gt; 0</span> if</p>
 <ol type="1">
-<li class="fragment"><span class="math inline">\(N(0)=0\)</span>,</li>
-<li class="fragment"><span class="math inline">\(N(t)\)</span> has independent increments, and</li>
-<li class="fragment">The number of arrivals in any interval of length <span class="math inline">\(s\)</span> is <span class="math inline">\(\text{Pois}(\lambda s)\)</span> distributed.</li>
+<li class="fragment"><span class="math inline">N(0)=0</span>,</li>
+<li class="fragment"><span class="math inline">N(t)</span> has independent increments, and</li>
+<li class="fragment">The number of arrivals in any interval of length <span class="math inline">s</span> is <span class="math inline">\text{Pois}(\lambda s)</span> distributed.</li>
 </ol>
 </div>
 </div>
@@ -617,7 +633,7 @@ Joshua J Bon
 <p><strong>Arrival time</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math inline">\(T_i =\)</span> Time of <span class="math inline">\(i\)</span>th arrival, for <span class="math inline">\(i \in \{1,2,\ldots\}\)</span></p>
+<p><span class="math inline">T_i =</span> Time of <span class="math inline">i</span>th arrival, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
 </div>
 </div>
 </div>
@@ -630,11 +646,12 @@ Joshua J Bon
 <p><strong>Interarrival time</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math inline">\(X_{i} =\)</span> Time between <span class="math inline">\((i-1)\)</span>th and <span class="math inline">\(i\)</span>th arrival, for <span class="math inline">\(i \in \{1,2,\ldots\}\)</span></p>
-<p><span class="math inline">\(X_{i} = T_{i} - T_{i-1}\)</span>, <span class="math inline">\(T_0=0\)</span></p>
+<p><span class="math inline">X_{i} =</span> Time between <span class="math inline">(i-1)</span>th and <span class="math inline">i</span>th arrival, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
+<p><span class="math inline">X_{i} = T_{i} - T_{i-1}</span>, <span class="math inline">T_0=0</span></p>
 </div>
 </div>
 </div>
+<!--- Should I fill in the last property manually? --->
 </section>
 <section id="properties-of-poisson-processes" class="slide level2">
 <h2>Properties of Poisson processes</h2>
@@ -647,7 +664,7 @@ Joshua J Bon
 <p><strong>Property 1</strong></p>
 </div>
 <div class="callout-content">
-<p>For fixed <span class="math inline">\(t\)</span>, <span class="math inline">\(N(t) \sim \text{Pois}(\lambda t)\)</span></p>
+<p>For fixed <span class="math inline">t</span>, <span class="math inline">N(t) \sim \text{Pois}(\lambda t)</span></p>
 </div>
 </div>
 </div>
@@ -660,8 +677,8 @@ Joshua J Bon
 <p><strong>Property 2</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math inline">\(\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)\)</span></p>
-<p>for <span class="math inline">\(s_1 &lt; s_1 + t_1 \leq s_2 &lt; s_2 + t_2\)</span>, <span class="math inline">\(t_1,t_2&gt;0\)</span> and <span class="math inline">\(k_1,k_2 \in \mathbb{N}_0\)</span>.</p>
+<p><span class="math inline">\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)</span></p>
+<p>for <span class="math inline">s_1 &lt; s_1 + t_1 \leq s_2 &lt; s_2 + t_2</span>, <span class="math inline">t_1,t_2&gt;0</span> and <span class="math inline">k_1,k_2 \in \mathbb{N}_0</span>.</p>
 </div>
 </div>
 </div>
@@ -674,7 +691,7 @@ Joshua J Bon
 <p><strong>Property 3</strong></p>
 </div>
 <div class="callout-content">
-<p>The interarrival times <span class="math inline">\(X_i \sim \text{Exp}(\lambda)\)</span>, for <span class="math inline">\(i \in \{1,2,\ldots\}\)</span></p>
+<p>The interarrival times <span class="math inline">X_i \sim \text{Exp}(\lambda)</span>, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
 </div>
 </div>
 </div>
@@ -696,14 +713,14 @@ Joshua J Bon
 <p><strong>Property 1</strong></p>
 </div>
 <div class="callout-content">
-<p>For fixed <span class="math inline">\(t\)</span>, <span class="math inline">\(N(t) \sim \text{Pois}(\lambda t)\)</span>.</p>
+<p>For fixed <span class="math inline">t</span>, <span class="math inline">N(t) \sim \text{Pois}(\lambda t)</span>.</p>
 </div>
 </div>
 </div>
 <ol type="a">
-<li class="fragment"><span class="math inline">\(N(0)=0\)</span>,</li>
+<li class="fragment"><span class="math inline">N(0)=0</span>,</li>
 <li class="fragment">Independent increments</li>
-<li class="fragment">Number of arrivals in <span class="math inline">\([s,s+t]\)</span> is <span class="math inline">\(\text{Pois}(\lambda t)\)</span></li>
+<li class="fragment">Number of arrivals in <span class="math inline">[s,s+t]</span> is <span class="math inline">\text{Pois}(\lambda t)</span></li>
 </ol>
 </section>
 <section id="quiz-1" class="slide level2">
@@ -718,16 +735,17 @@ Joshua J Bon
 <p><strong>Property 2</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math inline">\(\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)\)</span></p>
-<p>for <span class="math inline">\(0\leq s_1 &lt; s_1 + t_1 \leq s_2 &lt; s_2 + t_2\)</span>, and <span class="math inline">\(k_1,k_2 \in \mathbb{N}_0\)</span>.</p>
+<p><span class="math inline">\mathbb{P}(N(s_2 + t_2)-N(s_2) = k_2 \mid N(s_1 + t_1)-N(s_1) = k_1) = p_{\lambda t_2}(k_2)</span></p>
+<p>for <span class="math inline">0\leq s_1 &lt; s_1 + t_1 \leq s_2 &lt; s_2 + t_2</span>, and <span class="math inline">k_1,k_2 \in \mathbb{N}_0</span>.</p>
 </div>
 </div>
 </div>
 <ol type="a">
-<li class="fragment"><span class="math inline">\(N(0)=0\)</span>,</li>
+<li class="fragment"><span class="math inline">N(0)=0</span>,</li>
 <li class="fragment">Independent increments</li>
-<li class="fragment">Number of arrivals in <span class="math inline">\([s,s+t]\)</span> is <span class="math inline">\(\text{Pois}(\lambda t)\)</span></li>
+<li class="fragment">Number of arrivals in <span class="math inline">[s,s+t]</span> is <span class="math inline">\text{Pois}(\lambda t)</span></li>
 </ol>
+<!--- Discuss with partner. 1 a/c, 2 b/c --->
 </section></section>
 <section>
 <section id="demonstration-1" class="title-slide slide level1 center">
@@ -739,7 +757,7 @@ Joshua J Bon
 <p>Exponential distribution property</p>
 <p>Law of total probability</p>
 </section>
-<section id="proof-of-interarrival-times-property" class="slide level2 scrollable">
+<section id="proof-of-interarrival-times-property" class="slide level2">
 <h2>Proof of interarrival times property</h2>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -750,44 +768,44 @@ Joshua J Bon
 <p><strong>Property 3</strong></p>
 </div>
 <div class="callout-content">
-<p>The interarrival times <span class="math inline">\(X_k \sim \text{Exp}(\lambda)\)</span>, for <span class="math inline">\(k \in \{1,2,\ldots\}\)</span></p>
+<p>The interarrival times <span class="math inline">X_i \sim \text{Exp}(\lambda)</span>, for <span class="math inline">i \in \{1,2,\ldots\}</span></p>
 </div>
 </div>
 </div>
 <div class="fragment">
-<p>For times <span class="math inline">\(0 &lt; s \leq t\)</span> and arrival index <span class="math inline">\(i \in \{1,2,\ldots\}\)</span> consider</p>
-<p><span class="math inline">\(\mathbb{P}(X_{i} &gt; t \mid T_{i-1} = s)\)</span></p>
+<p>For times <span class="math inline">s,t &gt; 0</span> and arrival index <span class="math inline">i \in \{1,2,\ldots\}</span> consider</p>
+<p><span class="math display">\mathbb{P}(X_{i} &gt; t \mid T_{i-1} = s)</span></p>
+</div>
+</section>
+<section id="proof-of-interarrival-times-property-1" class="slide level2">
+<h2>Proof of interarrival times property</h2>
+<p><span class="math inline">\mathbb{P}(X_{i} &gt; t \mid T_{i-1} = s)</span></p>
+<div class="fragment">
+<p><span class="math inline">= \mathbb{P}(T_{i} - T_{i-1}  &gt; t \mid T_{i-1} = s)</span></p>
 </div>
 <div class="fragment">
-<p><span class="math inline">\(= \mathbb{P}(T_{i} - T_{i-1}  &gt; t \mid T_{i-1} = s)\)</span></p>
-</div>
-<p><span class="math display">\[~\]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(= \mathbb{P}(T_{i} &gt; s+t \mid T_{i-1} = s)\)</span></p>
-</div>
-<p><span class="math display">\[~\]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(= \mathbb{P}(N(s+t) = N(s) \mid N(s) = i-1)\)</span></p>
-</div>
-<p><span class="math display">\[~\]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(= \mathbb{P}(N(s+t) - N(s) = 0  \mid N(s) - N(0) = i-1)\)</span></p>
-</div>
-<p><span class="math display">\[~\]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(= p_{\lambda t}(0) = e^{-\lambda t}\)</span></p>
-</div>
-<p><span class="math display">\[~\]</span></p>
-<div class="fragment">
-<p>Now consider <span class="math inline">\(\mathbb{P}(X_{i} &gt; t)\)</span></p>
+<p><span class="math inline">= \mathbb{P}(T_{i} &gt; s+t \mid T_{i-1} = s)</span></p>
 </div>
 <div class="fragment">
-<p><span class="math inline">\(= \mathbb{E}_{S}[\mathbb{P}(X_{i} &gt; t \mid T_{i-1}=S)] = e^{-\lambda t}\)</span></p>
+<p><span class="math inline">= \mathbb{P}(N(s+t) - N(s) = 0  \mid N(s) - N(0) = i-1)</span></p>
 </div>
-<p><span class="math display">\[~\]</span></p>
 <div class="fragment">
-<p>We can then recognise that <span class="math inline">\(X_i \sim \text{Exp}(\lambda)\)</span>.</p>
+<p><span class="math inline">= p_{\lambda t}(0) = e^{-\lambda t}</span></p>
 </div>
+</section>
+<section id="proof-of-interarrival-times-property-2" class="slide level2">
+<h2>Proof of interarrival times property</h2>
+<p>Now consider <span class="math inline">\mathbb{P}(X_{i} &gt; t)</span></p>
+<div class="fragment">
+<p><span class="math inline">= \mathbb{E}[\mathbb{P}(X_{i} &gt; t \mid T_{i-1}=S)]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math inline">= \mathbb{E}[e^{-\lambda t}] = e^{-\lambda t}</span></p>
+</div>
+<div class="fragment">
+<p>We can then recognise that <span class="math inline">X_i \sim \text{Exp}(\lambda)</span>.</p>
+</div>
+<!--- Property 2 --->
 </section>
 <section id="interarrival-times-strategy-review" class="slide level2">
 <h2>Interarrival times: Strategy review</h2>
@@ -821,7 +839,7 @@ Joshua J Bon
 <p>Poisson did not use or discover the Poisson process!</p>
 <ul>
 <li class="fragment"><p>Delays and congestion in telephone systems (1909)</p></li>
-<li class="fragment"><p>Number of <span class="math inline">\(\alpha\)</span>-particles detected by Geiger count (1910)</p></li>
+<li class="fragment"><p>Number of <span class="math inline">\alpha</span>-particles detected by Geiger count (1910)</p></li>
 <li class="fragment"><p>Adopted quickly in: biology, ecology, engineering, physics</p></li>
 </ul>
 <aside><ol class="aside-footnotes"><li id="fn1"><p>See <span class="citation" data-cites="stirzaker2000advice">Stirzaker (<a href="#/references" role="doc-biblioref" onclick="">2000</a>)</span> for more details</p></li></ol></aside></section></section>
@@ -864,7 +882,6 @@ Stirzaker, David. 2000. <span>“Advice to Hedgehogs, or, Constants Can Vary.”
   <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
   <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
   <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -1032,27 +1049,9 @@ Stirzaker, David. 2000. <span>“Advice to Hedgehogs, or, Constants Can Vary.”
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom
